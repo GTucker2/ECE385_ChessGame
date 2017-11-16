@@ -20,7 +20,7 @@ Note: The files cataloged here are only those which have been written by the dev
 * [Color_Mapper.sv](https://github.com/GTucker2/ECE385_ChessGame/blob/master/Lab8_Starter/Lab8_provided/Color_Mapper.sv) - Maps color to pixel location for VGA display
 * [HexDriver.sv](https://github.com/GTucker2/ECE385_ChessGame/blob/master/Lab8_Starter/Lab8_provided/HexDriver.sv) - Converts a 4-bit decimal input to an 8-bit output signal compatible with Altera hex-display LEDs
 * [hpi_io_intf.sv](https://github.com/GTucker2/ECE385_ChessGame/blob/master/Lab8_Starter/Lab8_provided/hpi_io_intf.sv) - Connects the Nios II and EX-OTG data channels
-* [VGA_controller.sv]https://github.com/GTucker2/ECE385_ChessGame/blob/master/Lab8_Starter/Lab8_provided/VGA_controller.sv() - Sets VGA control signals and writes output values to the display
+* [VGA_controller.sv](https://github.com/GTucker2/ECE385_ChessGame/blob/master/Lab8_Starter/Lab8_provided/VGA_controller.sv) - Sets VGA control signals and writes output values to the display
 #### Software 
 * [io_handler.c](https://github.com/GTucker2/ECE385_ChessGame/blob/master/Lab8_Starter/Lab8_provided/software/usb_kb/io_handler.c) - Contains sub-functions for reading and writing to be used with usb.c
 * [main.c](https://github.com/GTucker2/ECE385_ChessGame/blob/master/Lab8_Starter/Lab8_provided/software/usb_kb/main.c) - Primary loop which handles USB keyboard implementation
