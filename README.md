@@ -2,8 +2,8 @@
 This game was developed as a final project for ECE385, Digital Systems Laboratory, at the University of Illinois at Urbana-Champaign. 
 
 ## Authors
-* **Lance Pan** - []()
 * **Griffin A. Tucker**  - [GTucker2](https://github.com/GTucker2)
+* **Lance Pan** - []()
 
 ## Files
 
