@@ -26,10 +26,6 @@ Note: The files cataloged here are only those which have been written by the dev
 * **main.c** - Primary loop which handles USB keyboard implementation
 * **usb.c** - Contains functions for reading and writing to the internal registers of the USB controller
 
-### Chess_Game
-#### Hardware
-#### Software
-
 ## Acknowledgements
 * **United States Chess Federation** - [Summary of the Moves of Chess](http://www.uschess.org/docs/forms/LetsPlay.pdf)
 * **Xinying Wang and UIUC ECE Department** - Provided code for VGA and USB implementation, i.e. Lab8_Starter
