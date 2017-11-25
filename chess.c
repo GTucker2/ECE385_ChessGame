@@ -1,8 +1,8 @@
 /************************************************************************************/
-/*Remember... if something is fucking stupid and it works... it's not fucking stupid*/
+/*Remember... if something is stupid and it works... it's not stupid                */
 /*Code Written by Lance Pan & Griffin Tucker Fall 2017                              */
 /*For use in ECE385 Final Project                                                   */
-/*The objective is simple... chess.                                                 */
+/*The objective is simple: chess.                                                   */
 /*The two travelers could not fathom the difficulty of the task laid ahead...       */
 /************************************************************************************/
 
