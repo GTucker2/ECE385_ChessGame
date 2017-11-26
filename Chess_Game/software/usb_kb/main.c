@@ -20,6 +20,8 @@
 #include "sys/alt_irq.h"
 #include "io_handler.h"
 
+#include "chess.h"
+
 #include "cy7c67200.h"
 #include "usb.h"
 #include "lcp_cmd.h"
