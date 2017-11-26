@@ -11,17 +11,17 @@
 #include "chess.h"
 
 // Pointer to base address of chess module, make sure it matches Qsys
-//volatile unsigned int * CHESS_PTR = (unsigned int *) 0x00000040;
+volatile unsigned int * CHESS_PTR = (unsigned int *) 0x00000400;
 
 // A board which contains all of the present locations of the board pieces
-uchar locboard[BOARD_WIDTH][BOARD_WIDTH];
+unsigned char locboard[8][8];
 
 void chess_init()
 {
 	// Declare local variables
-	alt_u8 cur_row;												// Iterator for board squares
-	alt_u8 cur_col;
-	alt_u8 cur_square;
+	uchar cur_row;												// Iterator for board squares
+	uchar cur_col;
+	uchar cur_square;
 
 	// Initialize the pieces on the board squares
 	for(cur_col = 0, cur_square = 0; cur_col < BOARD_WIDTH; cur_col++)

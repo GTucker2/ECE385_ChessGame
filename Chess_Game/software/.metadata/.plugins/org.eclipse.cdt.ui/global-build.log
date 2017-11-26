@@ -217,3 +217,353 @@ Info: Building ../usb_kb_bsp/
 D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
 [BSP build complete]
 [usb_kb build complete]
+15:14:42 **** Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Compiling chess.c to obj/default/chess.o
+nios2-elf-gcc -xc -MP -MMD -c -I../usb_kb_bsp//HAL/inc -I../usb_kb_bsp/ -I../usb_kb_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/chess.o chess.c
+In file included from chess.c:11:0:
+chess.h:5:23: error: conflicting types for 'uint'
+ typedef unsigned long uint;                                 // 32-bit word
+                       ^
+In file included from d:\altera\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:46:0,
+                 from chess.c:10:
+d:\altera\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\sys\types.h:100:22: note: previous declaration of 'uint' was here
+ typedef unsigned int uint;  /* System V compatibility */
+                      ^
+chess.c:17:7: error: variably modified 'locboard' at file scope
+ uchar locboard[BOARD_WIDTH][BOARD_WIDTH];
+       ^
+chess.c:17:7: error: variably modified 'locboard' at file scope
+chess.c: In function 'chess_init':
+chess.c:22:2: error: unknown type name 'alt_u8'
+  alt_u8 cur_row;            // Iterator for board squares
+  ^
+chess.c:23:2: error: unknown type name 'alt_u8'
+  alt_u8 cur_col;
+  ^
+chess.c:24:2: error: unknown type name 'alt_u8'
+  alt_u8 cur_square;
+  ^
+chess.c:43:4: error: 'CHESS_PTR' undeclared (first use in this function)
+    CHESS_PTR[cur_square] = locboard[cur_col][cur_row];
+    ^
+chess.c:43:4: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [obj/default/chess.o] Error 1
+15:14:45 **** Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]
+15:16:11 **** Incremental Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Compiling chess.c to obj/default/chess.o
+nios2-elf-gcc -xc -MP -MMD -c -I../usb_kb_bsp//HAL/inc -I../usb_kb_bsp/ -I../usb_kb_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/chess.o chess.c
+chess.c:17:7: error: variably modified 'locboard' at file scope
+ uchar locboard[BOARD_WIDTH][BOARD_WIDTH];
+       ^
+chess.c:17:7: error: variably modified 'locboard' at file scope
+chess.c: In function 'chess_init':
+chess.c:43:4: error: 'CHESS_PTR' undeclared (first use in this function)
+    CHESS_PTR[cur_square] = locboard[cur_col][cur_row];
+    ^
+chess.c:43:4: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [obj/default/chess.o] Error 1
+15:16:12 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]
+15:17:46 **** Incremental Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Compiling chess.c to obj/default/chess.o
+nios2-elf-gcc -xc -MP -MMD -c -I../usb_kb_bsp//HAL/inc -I../usb_kb_bsp/ -I../usb_kb_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/chess.o chess.c
+chess.c:17:7: error: variably modified 'locboard' at file scope
+ uchar locboard[BOARD_WIDTH][BOARD_WIDTH];
+       ^
+chess.c:17:7: error: variably modified 'locboard' at file scope
+make: *** [obj/default/chess.o] Error 1
+15:17:47 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]
+15:21:11 **** Incremental Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Compiling chess.c to obj/default/chess.o
+nios2-elf-gcc -xc -MP -MMD -c -I../usb_kb_bsp//HAL/inc -I../usb_kb_bsp/ -I../usb_kb_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/chess.o chess.c
+chess.c:17:15: error: variably modified 'locboard' at file scope
+ unsigned char locboard[BOARD_WIDTH][BOARD_WIDTH];
+               ^
+chess.c:17:15: error: variably modified 'locboard' at file scope
+make: *** [obj/default/chess.o] Error 1
+15:21:12 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]
+15:22:09 **** Incremental Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Compiling chess.c to obj/default/chess.o
+nios2-elf-gcc -xc -MP -MMD -c -I../usb_kb_bsp//HAL/inc -I../usb_kb_bsp/ -I../usb_kb_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/chess.o chess.c
+Info: Compiling main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../usb_kb_bsp//HAL/inc -I../usb_kb_bsp/ -I../usb_kb_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/main.o main.c
+Info: Linking usb_kb.elf
+nios2-elf-g++  -T'../usb_kb_bsp//linker.x' -msys-crt0='../usb_kb_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../usb_kb_bsp/   -Wl,-Map=usb_kb.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o usb_kb.elf obj/default/chess.o obj/default/io_handler.o obj/default/main.o obj/default/usb.o -lm 
+obj/default/main.o:(.sdata+0x0): multiple definition of `TOTAL_SQUARES'
+obj/default/chess.o:(.sdata+0x0): first defined here
+d:/altera/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.1/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: Disabling relaxation: it will not work with multiple definitions
+obj/default/main.o:(.sdata+0x1): multiple definition of `BOARD_WIDTH'
+obj/default/chess.o:(.sdata+0x1): first defined here
+obj/default/main.o:(.sdata+0x2): multiple definition of `W_PAWN'
+obj/default/chess.o:(.sdata+0x2): first defined here
+obj/default/main.o:(.sdata+0x3): multiple definition of `B_PAWN'
+obj/default/chess.o:(.sdata+0x3): first defined here
+obj/default/main.o:(.sdata+0x4): multiple definition of `W_ROOK'
+obj/default/chess.o:(.sdata+0x4): first defined here
+obj/default/main.o:(.sdata+0x5): multiple definition of `B_ROOK'
+obj/default/chess.o:(.sdata+0x5): first defined here
+obj/default/main.o:(.sdata+0x6): multiple definition of `W_KNIGHT'
+obj/default/chess.o:(.sdata+0x6): first defined here
+obj/default/main.o:(.sdata+0x7): multiple definition of `B_KNIGHT'
+obj/default/chess.o:(.sdata+0x7): first defined here
+obj/default/main.o:(.sdata+0x8): multiple definition of `W_BISHOP'
+obj/default/chess.o:(.sdata+0x8): first defined here
+obj/default/main.o:(.sdata+0x9): multiple definition of `B_BISHOP'
+obj/default/chess.o:(.sdata+0x9): first defined here
+obj/default/main.o:(.sdata+0xa): multiple definition of `W_KING'
+obj/default/chess.o:(.sdata+0xa): first defined here
+obj/default/main.o:(.sdata+0xb): multiple definition of `B_KING'
+obj/default/chess.o:(.sdata+0xb): first defined here
+obj/default/main.o:(.sdata+0xc): multiple definition of `W_QUEEN'
+obj/default/chess.o:(.sdata+0xc): first defined here
+obj/default/main.o:(.sdata+0xd): multiple definition of `B_QUEEN'
+obj/default/chess.o:(.sdata+0xd): first defined here
+obj/default/main.o:(.sdata+0xe): multiple definition of `EMPTY'
+obj/default/chess.o:(.sdata+0xe): first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [usb_kb.elf] Error 1
+15:22:11 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]
+15:22:59 **** Incremental Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Linking usb_kb.elf
+nios2-elf-g++  -T'../usb_kb_bsp//linker.x' -msys-crt0='../usb_kb_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../usb_kb_bsp/   -Wl,-Map=usb_kb.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o usb_kb.elf obj/default/chess.o obj/default/io_handler.o obj/default/main.o obj/default/usb.o -lm 
+obj/default/main.o:(.sdata+0x0): multiple definition of `TOTAL_SQUARES'
+obj/default/chess.o:(.sdata+0x0): first defined here
+d:/altera/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.1/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: Disabling relaxation: it will not work with multiple definitions
+obj/default/main.o:(.sdata+0x1): multiple definition of `BOARD_WIDTH'
+obj/default/chess.o:(.sdata+0x1): first defined here
+obj/default/main.o:(.sdata+0x2): multiple definition of `W_PAWN'
+obj/default/chess.o:(.sdata+0x2): first defined here
+obj/default/main.o:(.sdata+0x3): multiple definition of `B_PAWN'
+obj/default/chess.o:(.sdata+0x3): first defined here
+obj/default/main.o:(.sdata+0x4): multiple definition of `W_ROOK'
+obj/default/chess.o:(.sdata+0x4): first defined here
+obj/default/main.o:(.sdata+0x5): multiple definition of `B_ROOK'
+obj/default/chess.o:(.sdata+0x5): first defined here
+obj/default/main.o:(.sdata+0x6): multiple definition of `W_KNIGHT'
+obj/default/chess.o:(.sdata+0x6): first defined here
+obj/default/main.o:(.sdata+0x7): multiple definition of `B_KNIGHT'
+obj/default/chess.o:(.sdata+0x7): first defined here
+obj/default/main.o:(.sdata+0x8): multiple definition of `W_BISHOP'
+obj/default/chess.o:(.sdata+0x8): first defined here
+obj/default/main.o:(.sdata+0x9): multiple definition of `B_BISHOP'
+obj/default/chess.o:(.sdata+0x9): first defined here
+obj/default/main.o:(.sdata+0xa): multiple definition of `W_KING'
+obj/default/chess.o:(.sdata+0xa): first defined here
+obj/default/main.o:(.sdata+0xb): multiple definition of `B_KING'
+obj/default/chess.o:(.sdata+0xb): first defined here
+obj/default/main.o:(.sdata+0xc): multiple definition of `W_QUEEN'
+obj/default/chess.o:(.sdata+0xc): first defined here
+obj/default/main.o:(.sdata+0xd): multiple definition of `B_QUEEN'
+obj/default/chess.o:(.sdata+0xd): first defined here
+obj/default/main.o:(.sdata+0xe): multiple definition of `EMPTY'
+obj/default/chess.o:(.sdata+0xe): first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [usb_kb.elf] Error 1
+15:23:00 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]
+15:25:33 **** Incremental Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Linking usb_kb.elf
+nios2-elf-g++  -T'../usb_kb_bsp//linker.x' -msys-crt0='../usb_kb_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../usb_kb_bsp/   -Wl,-Map=usb_kb.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o usb_kb.elf obj/default/chess.o obj/default/io_handler.o obj/default/main.o obj/default/usb.o -lm 
+obj/default/main.o:(.sdata+0x0): multiple definition of `TOTAL_SQUARES'
+obj/default/chess.o:(.sdata+0x0): first defined here
+d:/altera/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.1/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: Disabling relaxation: it will not work with multiple definitions
+obj/default/main.o:(.sdata+0x1): multiple definition of `BOARD_WIDTH'
+obj/default/chess.o:(.sdata+0x1): first defined here
+obj/default/main.o:(.sdata+0x2): multiple definition of `W_PAWN'
+obj/default/chess.o:(.sdata+0x2): first defined here
+obj/default/main.o:(.sdata+0x3): multiple definition of `B_PAWN'
+obj/default/chess.o:(.sdata+0x3): first defined here
+obj/default/main.o:(.sdata+0x4): multiple definition of `W_ROOK'
+obj/default/chess.o:(.sdata+0x4): first defined here
+obj/default/main.o:(.sdata+0x5): multiple definition of `B_ROOK'
+obj/default/chess.o:(.sdata+0x5): first defined here
+obj/default/main.o:(.sdata+0x6): multiple definition of `W_KNIGHT'
+obj/default/chess.o:(.sdata+0x6): first defined here
+obj/default/main.o:(.sdata+0x7): multiple definition of `B_KNIGHT'
+obj/default/chess.o:(.sdata+0x7): first defined here
+obj/default/main.o:(.sdata+0x8): multiple definition of `W_BISHOP'
+obj/default/chess.o:(.sdata+0x8): first defined here
+obj/default/main.o:(.sdata+0x9): multiple definition of `B_BISHOP'
+obj/default/chess.o:(.sdata+0x9): first defined here
+obj/default/main.o:(.sdata+0xa): multiple definition of `W_KING'
+obj/default/chess.o:(.sdata+0xa): first defined here
+obj/default/main.o:(.sdata+0xb): multiple definition of `B_KING'
+obj/default/chess.o:(.sdata+0xb): first defined here
+obj/default/main.o:(.sdata+0xc): multiple definition of `W_QUEEN'
+obj/default/chess.o:(.sdata+0xc): first defined here
+obj/default/main.o:(.sdata+0xd): multiple definition of `B_QUEEN'
+obj/default/chess.o:(.sdata+0xd): first defined here
+obj/default/main.o:(.sdata+0xe): multiple definition of `EMPTY'
+obj/default/chess.o:(.sdata+0xe): first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [usb_kb.elf] Error 1
+15:25:34 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]
+15:36:06 **** Incremental Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Linking usb_kb.elf
+nios2-elf-g++  -T'../usb_kb_bsp//linker.x' -msys-crt0='../usb_kb_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../usb_kb_bsp/   -Wl,-Map=usb_kb.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o usb_kb.elf obj/default/chess.o obj/default/io_handler.o obj/default/main.o obj/default/usb.o -lm 
+obj/default/main.o:(.sdata+0x0): multiple definition of `TOTAL_SQUARES'
+obj/default/chess.o:(.sdata+0x0): first defined here
+d:/altera/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.1/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: Disabling relaxation: it will not work with multiple definitions
+obj/default/main.o:(.sdata+0x1): multiple definition of `BOARD_WIDTH'
+obj/default/chess.o:(.sdata+0x1): first defined here
+obj/default/main.o:(.sdata+0x2): multiple definition of `W_PAWN'
+obj/default/chess.o:(.sdata+0x2): first defined here
+obj/default/main.o:(.sdata+0x3): multiple definition of `B_PAWN'
+obj/default/chess.o:(.sdata+0x3): first defined here
+obj/default/main.o:(.sdata+0x4): multiple definition of `W_ROOK'
+obj/default/chess.o:(.sdata+0x4): first defined here
+obj/default/main.o:(.sdata+0x5): multiple definition of `B_ROOK'
+obj/default/chess.o:(.sdata+0x5): first defined here
+obj/default/main.o:(.sdata+0x6): multiple definition of `W_KNIGHT'
+obj/default/chess.o:(.sdata+0x6): first defined here
+obj/default/main.o:(.sdata+0x7): multiple definition of `B_KNIGHT'
+obj/default/chess.o:(.sdata+0x7): first defined here
+obj/default/main.o:(.sdata+0x8): multiple definition of `W_BISHOP'
+obj/default/chess.o:(.sdata+0x8): first defined here
+obj/default/main.o:(.sdata+0x9): multiple definition of `B_BISHOP'
+obj/default/chess.o:(.sdata+0x9): first defined here
+obj/default/main.o:(.sdata+0xa): multiple definition of `W_KING'
+obj/default/chess.o:(.sdata+0xa): first defined here
+obj/default/main.o:(.sdata+0xb): multiple definition of `B_KING'
+obj/default/chess.o:(.sdata+0xb): first defined here
+obj/default/main.o:(.sdata+0xc): multiple definition of `W_QUEEN'
+obj/default/chess.o:(.sdata+0xc): first defined here
+obj/default/main.o:(.sdata+0xd): multiple definition of `B_QUEEN'
+obj/default/chess.o:(.sdata+0xd): first defined here
+obj/default/main.o:(.sdata+0xe): multiple definition of `EMPTY'
+obj/default/chess.o:(.sdata+0xe): first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [usb_kb.elf] Error 1
+15:36:07 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]
+15:44:08 **** Incremental Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Linking usb_kb.elf
+nios2-elf-g++  -T'../usb_kb_bsp//linker.x' -msys-crt0='../usb_kb_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../usb_kb_bsp/   -Wl,-Map=usb_kb.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o usb_kb.elf obj/default/chess.o obj/default/io_handler.o obj/default/main.o obj/default/usb.o -lm 
+obj/default/main.o:(.sdata+0x0): multiple definition of `TOTAL_SQUARES'
+obj/default/chess.o:(.sdata+0x0): first defined here
+d:/altera/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.1/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: Disabling relaxation: it will not work with multiple definitions
+obj/default/main.o:(.sdata+0x1): multiple definition of `BOARD_WIDTH'
+obj/default/chess.o:(.sdata+0x1): first defined here
+obj/default/main.o:(.sdata+0x2): multiple definition of `W_PAWN'
+obj/default/chess.o:(.sdata+0x2): first defined here
+obj/default/main.o:(.sdata+0x3): multiple definition of `B_PAWN'
+obj/default/chess.o:(.sdata+0x3): first defined here
+obj/default/main.o:(.sdata+0x4): multiple definition of `W_ROOK'
+obj/default/chess.o:(.sdata+0x4): first defined here
+obj/default/main.o:(.sdata+0x5): multiple definition of `B_ROOK'
+obj/default/chess.o:(.sdata+0x5): first defined here
+obj/default/main.o:(.sdata+0x6): multiple definition of `W_KNIGHT'
+obj/default/chess.o:(.sdata+0x6): first defined here
+obj/default/main.o:(.sdata+0x7): multiple definition of `B_KNIGHT'
+obj/default/chess.o:(.sdata+0x7): first defined here
+obj/default/main.o:(.sdata+0x8): multiple definition of `W_BISHOP'
+obj/default/chess.o:(.sdata+0x8): first defined here
+obj/default/main.o:(.sdata+0x9): multiple definition of `B_BISHOP'
+obj/default/chess.o:(.sdata+0x9): first defined here
+obj/default/main.o:(.sdata+0xa): multiple definition of `W_KING'
+obj/default/chess.o:(.sdata+0xa): first defined here
+obj/default/main.o:(.sdata+0xb): multiple definition of `B_KING'
+obj/default/chess.o:(.sdata+0xb): first defined here
+obj/default/main.o:(.sdata+0xc): multiple definition of `W_QUEEN'
+obj/default/chess.o:(.sdata+0xc): first defined here
+obj/default/main.o:(.sdata+0xd): multiple definition of `B_QUEEN'
+obj/default/chess.o:(.sdata+0xd): first defined here
+obj/default/main.o:(.sdata+0xe): multiple definition of `EMPTY'
+obj/default/chess.o:(.sdata+0xe): first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [usb_kb.elf] Error 1
+15:44:09 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]
+15:47:59 **** Incremental Build of configuration Nios II for project usb_kb ****
+make all 
+Info: Building ../usb_kb_bsp/
+D:/Altera/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../usb_kb_bsp/
+[BSP build complete]
+Info: Linking usb_kb.elf
+nios2-elf-g++  -T'../usb_kb_bsp//linker.x' -msys-crt0='../usb_kb_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../usb_kb_bsp/   -Wl,-Map=usb_kb.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o usb_kb.elf obj/default/chess.o obj/default/io_handler.o obj/default/main.o obj/default/usb.o -lm 
+obj/default/main.o:(.sdata+0x0): multiple definition of `TOTAL_SQUARES'
+obj/default/chess.o:(.sdata+0x0): first defined here
+d:/altera/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/4.9.1/../../../../../H-x86_64-mingw32/nios2-elf/bin/ld.exe: Disabling relaxation: it will not work with multiple definitions
+obj/default/main.o:(.sdata+0x1): multiple definition of `BOARD_WIDTH'
+obj/default/chess.o:(.sdata+0x1): first defined here
+obj/default/main.o:(.sdata+0x2): multiple definition of `W_PAWN'
+obj/default/chess.o:(.sdata+0x2): first defined here
+obj/default/main.o:(.sdata+0x3): multiple definition of `B_PAWN'
+obj/default/chess.o:(.sdata+0x3): first defined here
+obj/default/main.o:(.sdata+0x4): multiple definition of `W_ROOK'
+obj/default/chess.o:(.sdata+0x4): first defined here
+obj/default/main.o:(.sdata+0x5): multiple definition of `B_ROOK'
+obj/default/chess.o:(.sdata+0x5): first defined here
+obj/default/main.o:(.sdata+0x6): multiple definition of `W_KNIGHT'
+obj/default/chess.o:(.sdata+0x6): first defined here
+obj/default/main.o:(.sdata+0x7): multiple definition of `B_KNIGHT'
+obj/default/chess.o:(.sdata+0x7): first defined here
+obj/default/main.o:(.sdata+0x8): multiple definition of `W_BISHOP'
+obj/default/chess.o:(.sdata+0x8): first defined here
+obj/default/main.o:(.sdata+0x9): multiple definition of `B_BISHOP'
+obj/default/chess.o:(.sdata+0x9): first defined here
+obj/default/main.o:(.sdata+0xa): multiple definition of `W_KING'
+obj/default/chess.o:(.sdata+0xa): first defined here
+obj/default/main.o:(.sdata+0xb): multiple definition of `B_KING'
+obj/default/chess.o:(.sdata+0xb): first defined here
+obj/default/main.o:(.sdata+0xc): multiple definition of `W_QUEEN'
+obj/default/chess.o:(.sdata+0xc): first defined here
+obj/default/main.o:(.sdata+0xd): multiple definition of `B_QUEEN'
+obj/default/chess.o:(.sdata+0xd): first defined here
+obj/default/main.o:(.sdata+0xe): multiple definition of `EMPTY'
+obj/default/chess.o:(.sdata+0xe): first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [usb_kb.elf] Error 1
+15:48:00 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
+make all 
+[BSP build complete]

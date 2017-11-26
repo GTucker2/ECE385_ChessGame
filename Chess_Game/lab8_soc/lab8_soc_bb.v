@@ -1,6 +1,5 @@
 
 module lab8_soc (
-	chess_export_EXPORT_DATA,
 	clk_clk,
 	keycode_export,
 	otg_hpi_address_export,
@@ -21,7 +20,6 @@ module lab8_soc (
 	sdram_wire_ras_n,
 	sdram_wire_we_n);	
 
-	output	[31:0]	chess_export_EXPORT_DATA;
 	input		clk_clk;
 	output	[15:0]	keycode_export;
 	output	[1:0]	otg_hpi_address_export;

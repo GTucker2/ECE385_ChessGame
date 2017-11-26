@@ -50,7 +50,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -349,11 +349,7 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
- <interface
-   name="chess_export"
-   internal="chess_game_core_0.EXPORT_DATA"
-   type="conduit"
-   dir="end" />
+ <interface name="chess_export" internal="chess_game_core_0.EXPORT_DATA" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
    name="keycode"
@@ -392,7 +388,7 @@
    name="chess_game_core_0"
    kind="chess_game_core"
    version="1.0"
-   enabled="1" />
+   enabled="0" />
  <module name="clk_0" kind="clock_source" version="15.0" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -446,7 +442,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="29" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='otg_hpi_w.s1' start='0x20' end='0x30' /><slave name='otg_hpi_r.s1' start='0x30' end='0x40' /><slave name='otg_hpi_data.s1' start='0x40' end='0x50' /><slave name='otg_hpi_address.s1' start='0x50' end='0x60' /><slave name='otg_hpi_cs.s1' start='0x60' end='0x70' /><slave name='keycode.s1' start='0x70' end='0x80' /><slave name='sdram_pll.pll_slave' start='0x80' end='0x90' /><slave name='sysid_qsys_0.control_slave' start='0x98' end='0xA0' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0xA0' end='0xA8' /><slave name='chess_game_core_0.Chess_Slave' start='0x400' end='0x800' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x10000000' end='0x18000000' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='otg_hpi_w.s1' start='0x20' end='0x30' /><slave name='otg_hpi_r.s1' start='0x30' end='0x40' /><slave name='otg_hpi_data.s1' start='0x40' end='0x50' /><slave name='otg_hpi_address.s1' start='0x50' end='0x60' /><slave name='otg_hpi_cs.s1' start='0x60' end='0x70' /><slave name='keycode.s1' start='0x70' end='0x80' /><slave name='sdram_pll.pll_slave' start='0x80' end='0x90' /><slave name='sysid_qsys_0.control_slave' start='0x98' end='0xA0' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0xA0' end='0xA8' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x10000000' end='0x18000000' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />

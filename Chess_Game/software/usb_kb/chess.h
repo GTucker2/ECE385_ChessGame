@@ -2,7 +2,7 @@
 #define CHESS_H_
 
 typedef unsigned char uchar;                                // 8-bit byte
-typedef unsigned long uint;                                 // 32-bit word
+//typedef unsigned long uint;                                 // 32-bit word
 
 // Define general constants
 const uchar TOTAL_SQUARES = 64;		                        // Total squares in 8x8 board

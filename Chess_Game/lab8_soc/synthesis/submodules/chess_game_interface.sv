@@ -344,11 +344,11 @@ module reg_mux (
 
 	// Choose which data to output
 	always_comb begin			
+		temp = RECDATA;
 		if(WRITE == 1) begin	
 			if(ADDR & NAME == 1) begin	
 				temp = WRITEDATA;
 			end
 		end	
-		else temp = RECDATA;		
 	end					
 endmodule 

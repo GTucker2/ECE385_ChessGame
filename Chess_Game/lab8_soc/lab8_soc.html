@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2017.11.25.22:31:56</td>
+    <td class="l">2017.11.26.15:41:03</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -90,9 +90,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      <a href="#module_nios2_qsys_0"><b>nios2_qsys_0</b>
      </a> Nios II 15.0
      <br/>All Components
-     <br/>&#160;&#160;
-     <a href="#module_chess_game_core_0"><b>chess_game_core_0</b>
-     </a> chess_game_core 1.0
      <br/>&#160;&#160;
      <a href="#module_jtag_uart_0"><b>jtag_uart_0</b>
      </a> altera_avalon_jtag_uart 15.0
@@ -144,19 +141,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <tr>
     <td class="masterl">&#160;data_master</td>
     <td class="masterr">&#160;instruction_master</td>
-   </tr>
-   <tr>
-    <td class="slavemodule">&#160;
-     <a href="#module_chess_game_core_0"><b>chess_game_core_0</b>
-     </a>
-    </td>
-    <td class="empty"></td>
-    <td class="empty"></td>
-   </tr>
-   <tr>
-    <td class="slaveb">Chess_Slave&#160;</td>
-    <td class="addr"><span style="color:#989898">0x</span>00000400</td>
-    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
@@ -315,75 +299,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <td class="addr"><span style="color:#989898">0x</span>00000098</td>
    </tr>
   </table>
-  <a name="module_chess_game_core_0"> </a>
-  <div>
-   <hr/>
-   <h2>chess_game_core_0</h2>chess_game_core v1.0
-   <br/>
-   <div class="greydiv">
-    <table class="connectionboxes">
-     <tr>
-      <td class="neighbor" rowspan="4">
-       <a href="#module_nios2_qsys_0">nios2_qsys_0</a>
-      </td>
-      <td class="from">data_master&#160;&#160;</td>
-      <td class="main" rowspan="9">chess_game_core_0</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;Chess_Slave</td>
-     </tr>
-     <tr>
-      <td class="from">jtag_debug_module_reset&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;RESET</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
-     <tr>
-      <td class="neighbor" rowspan="4">
-       <a href="#module_clk_0">clk_0</a>
-      </td>
-      <td class="from">clk&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;CLK</td>
-     </tr>
-     <tr>
-      <td class="from">clk_reset&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;RESET</td>
-     </tr>
-    </table>
-   </div>
-   <br/>
-   <br/>
-   <table class="flowbox">
-    <tr>
-     <td class="parametersbox">
-      <h2>Parameters</h2>
-      <table>
-       <tr>
-        <td class="parametername">deviceFamily</td>
-        <td class="parametervalue">UNKNOWN</td>
-       </tr>
-       <tr>
-        <td class="parametername">generateLegacySim</td>
-        <td class="parametervalue">false</td>
-       </tr>
-      </table>
-     </td>
-    </tr>
-   </table>&#160;&#160;
-   <table class="flowbox">
-    <tr>
-     <td class="parametersbox">
-      <h2>Software Assignments</h2>(none)</td>
-    </tr>
-   </table>
-  </div>
   <a name="module_clk_0"> </a>
   <div>
    <hr/>
@@ -805,7 +720,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_clk_0">clk_0</a>
       </td>
       <td class="from">clk&#160;&#160;</td>
-      <td class="main" rowspan="65">nios2_qsys_0</td>
+      <td class="main" rowspan="60">nios2_qsys_0</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
@@ -815,32 +730,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </tr>
      <tr>
       <td class="to">&#160;&#160;reset_n</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">data_master&#160;&#160;</td>
-      <td class="neighbor" rowspan="4">
-       <a href="#module_chess_game_core_0">chess_game_core_0</a>
-      </td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;Chess_Slave</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">jtag_debug_module_reset&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;RESET</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
      </tr>
      <tr>
       <td></td>
@@ -1626,7 +1515,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">dataSlaveMapParam</td>
-        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /&gt;&lt;slave name='otg_hpi_w.s1' start='0x20' end='0x30' /&gt;&lt;slave name='otg_hpi_r.s1' start='0x30' end='0x40' /&gt;&lt;slave name='otg_hpi_data.s1' start='0x40' end='0x50' /&gt;&lt;slave name='otg_hpi_address.s1' start='0x50' end='0x60' /&gt;&lt;slave name='otg_hpi_cs.s1' start='0x60' end='0x70' /&gt;&lt;slave name='keycode.s1' start='0x70' end='0x80' /&gt;&lt;slave name='sdram_pll.pll_slave' start='0x80' end='0x90' /&gt;&lt;slave name='sysid_qsys_0.control_slave' start='0x98' end='0xA0' /&gt;&lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0xA0' end='0xA8' /&gt;&lt;slave name='chess_game_core_0.Chess_Slave' start='0x400' end='0x800' /&gt;&lt;slave name='nios2_qsys_0.jtag_debug_module' start='0x1000' end='0x1800' /&gt;&lt;slave name='sdram.s1' start='0x10000000' end='0x18000000' /&gt;&lt;/address-map&gt;</td>
+        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /&gt;&lt;slave name='otg_hpi_w.s1' start='0x20' end='0x30' /&gt;&lt;slave name='otg_hpi_r.s1' start='0x30' end='0x40' /&gt;&lt;slave name='otg_hpi_data.s1' start='0x40' end='0x50' /&gt;&lt;slave name='otg_hpi_address.s1' start='0x50' end='0x60' /&gt;&lt;slave name='otg_hpi_cs.s1' start='0x60' end='0x70' /&gt;&lt;slave name='keycode.s1' start='0x70' end='0x80' /&gt;&lt;slave name='sdram_pll.pll_slave' start='0x80' end='0x90' /&gt;&lt;slave name='sysid_qsys_0.control_slave' start='0x98' end='0xA0' /&gt;&lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0xA0' end='0xA8' /&gt;&lt;slave name='nios2_qsys_0.jtag_debug_module' start='0x1000' end='0x1800' /&gt;&lt;slave name='sdram.s1' start='0x10000000' end='0x18000000' /&gt;&lt;/address-map&gt;</td>
        </tr>
        <tr>
         <td class="parametername">clockFrequency</td>
@@ -4134,7 +4023,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1511670715</td>
+        <td class="parametervalue">1511732463</td>
        </tr>
        <tr>
         <td class="parametername">AUTO_DEVICE_FAMILY</td>
@@ -4163,7 +4052,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1511670715</td>
+        <td class="parametervalue">1511732463</td>
        </tr>
       </table>
      </td>
@@ -4173,7 +4062,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.01 seconds</td>
-    <td class="r">rendering took 0.11 seconds</td>
+    <td class="r">rendering took 0.07 seconds</td>
    </tr>
   </table>
  </body>

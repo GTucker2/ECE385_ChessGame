@@ -4,26 +4,25 @@
 
 `timescale 1 ps / 1 ps
 module lab8_soc (
-		output wire [31:0] chess_export_EXPORT_DATA, //    chess_export.EXPORT_DATA
-		input  wire        clk_clk,                  //             clk.clk
-		output wire [15:0] keycode_export,           //         keycode.export
-		output wire [1:0]  otg_hpi_address_export,   // otg_hpi_address.export
-		output wire        otg_hpi_cs_export,        //      otg_hpi_cs.export
-		input  wire [15:0] otg_hpi_data_in_port,     //    otg_hpi_data.in_port
-		output wire [15:0] otg_hpi_data_out_port,    //                .out_port
-		output wire        otg_hpi_r_export,         //       otg_hpi_r.export
-		output wire        otg_hpi_w_export,         //       otg_hpi_w.export
-		input  wire        reset_reset_n,            //           reset.reset_n
-		output wire        sdram_clk_clk,            //       sdram_clk.clk
-		output wire [12:0] sdram_wire_addr,          //      sdram_wire.addr
-		output wire [1:0]  sdram_wire_ba,            //                .ba
-		output wire        sdram_wire_cas_n,         //                .cas_n
-		output wire        sdram_wire_cke,           //                .cke
-		output wire        sdram_wire_cs_n,          //                .cs_n
-		inout  wire [31:0] sdram_wire_dq,            //                .dq
-		output wire [3:0]  sdram_wire_dqm,           //                .dqm
-		output wire        sdram_wire_ras_n,         //                .ras_n
-		output wire        sdram_wire_we_n           //                .we_n
+		input  wire        clk_clk,                //             clk.clk
+		output wire [15:0] keycode_export,         //         keycode.export
+		output wire [1:0]  otg_hpi_address_export, // otg_hpi_address.export
+		output wire        otg_hpi_cs_export,      //      otg_hpi_cs.export
+		input  wire [15:0] otg_hpi_data_in_port,   //    otg_hpi_data.in_port
+		output wire [15:0] otg_hpi_data_out_port,  //                .out_port
+		output wire        otg_hpi_r_export,       //       otg_hpi_r.export
+		output wire        otg_hpi_w_export,       //       otg_hpi_w.export
+		input  wire        reset_reset_n,          //           reset.reset_n
+		output wire        sdram_clk_clk,          //       sdram_clk.clk
+		output wire [12:0] sdram_wire_addr,        //      sdram_wire.addr
+		output wire [1:0]  sdram_wire_ba,          //                .ba
+		output wire        sdram_wire_cas_n,       //                .cas_n
+		output wire        sdram_wire_cke,         //                .cke
+		output wire        sdram_wire_cs_n,        //                .cs_n
+		inout  wire [31:0] sdram_wire_dq,          //                .dq
+		output wire [3:0]  sdram_wire_dqm,         //                .dqm
+		output wire        sdram_wire_ras_n,       //                .ras_n
+		output wire        sdram_wire_we_n         //                .we_n
 	);
 
 	wire         sdram_pll_c0_clk;                                             // sdram_pll:c0 -> [mm_interconnect_0:sdram_pll_c0_clk, rst_controller_002:clk, sdram:clk]
@@ -39,13 +38,6 @@ module lab8_soc (
 	wire         nios2_qsys_0_instruction_master_waitrequest;                  // mm_interconnect_0:nios2_qsys_0_instruction_master_waitrequest -> nios2_qsys_0:i_waitrequest
 	wire  [28:0] nios2_qsys_0_instruction_master_address;                      // nios2_qsys_0:i_address -> mm_interconnect_0:nios2_qsys_0_instruction_master_address
 	wire         nios2_qsys_0_instruction_master_read;                         // nios2_qsys_0:i_read -> mm_interconnect_0:nios2_qsys_0_instruction_master_read
-	wire         mm_interconnect_0_chess_game_core_0_chess_slave_chipselect;   // mm_interconnect_0:chess_game_core_0_Chess_Slave_chipselect -> chess_game_core_0:CS
-	wire  [31:0] mm_interconnect_0_chess_game_core_0_chess_slave_readdata;     // chess_game_core_0:READ_DATA -> mm_interconnect_0:chess_game_core_0_Chess_Slave_readdata
-	wire   [7:0] mm_interconnect_0_chess_game_core_0_chess_slave_address;      // mm_interconnect_0:chess_game_core_0_Chess_Slave_address -> chess_game_core_0:ADDR
-	wire         mm_interconnect_0_chess_game_core_0_chess_slave_read;         // mm_interconnect_0:chess_game_core_0_Chess_Slave_read -> chess_game_core_0:READ
-	wire   [3:0] mm_interconnect_0_chess_game_core_0_chess_slave_byteenable;   // mm_interconnect_0:chess_game_core_0_Chess_Slave_byteenable -> chess_game_core_0:BYTE_EN
-	wire         mm_interconnect_0_chess_game_core_0_chess_slave_write;        // mm_interconnect_0:chess_game_core_0_Chess_Slave_write -> chess_game_core_0:WRITE
-	wire  [31:0] mm_interconnect_0_chess_game_core_0_chess_slave_writedata;    // mm_interconnect_0:chess_game_core_0_Chess_Slave_writedata -> chess_game_core_0:WRITE_DATA
 	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect;   // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_chipselect -> jtag_uart_0:av_chipselect
 	wire  [31:0] mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_readdata;     // jtag_uart_0:av_readdata -> mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_readdata
 	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest;  // jtag_uart_0:av_waitrequest -> mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_waitrequest
@@ -116,25 +108,12 @@ module lab8_soc (
 	wire  [31:0] mm_interconnect_0_otg_hpi_w_s1_writedata;                     // mm_interconnect_0:otg_hpi_w_s1_writedata -> otg_hpi_w:writedata
 	wire         irq_mapper_receiver0_irq;                                     // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire  [31:0] nios2_qsys_0_d_irq_irq;                                       // irq_mapper:sender_irq -> nios2_qsys_0:d_irq
-	wire         rst_controller_reset_out_reset;                               // rst_controller:reset_out -> [chess_game_core_0:RESET, irq_mapper:reset, jtag_uart_0:rst_n, keycode:reset_n, mm_interconnect_0:nios2_qsys_0_reset_n_reset_bridge_in_reset_reset, nios2_qsys_0:reset_n, otg_hpi_address:reset_n, otg_hpi_cs:reset_n, otg_hpi_data:reset_n, otg_hpi_r:reset_n, otg_hpi_w:reset_n, rst_translator:in_reset]
+	wire         rst_controller_reset_out_reset;                               // rst_controller:reset_out -> [irq_mapper:reset, jtag_uart_0:rst_n, keycode:reset_n, mm_interconnect_0:nios2_qsys_0_reset_n_reset_bridge_in_reset_reset, nios2_qsys_0:reset_n, otg_hpi_address:reset_n, otg_hpi_cs:reset_n, otg_hpi_data:reset_n, otg_hpi_r:reset_n, otg_hpi_w:reset_n, rst_translator:in_reset]
 	wire         rst_controller_reset_out_reset_req;                           // rst_controller:reset_req -> [nios2_qsys_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_qsys_0_jtag_debug_module_reset_reset;                   // nios2_qsys_0:jtag_debug_module_resetrequest -> rst_controller:reset_in1
 	wire         rst_controller_001_reset_out_reset;                           // rst_controller_001:reset_out -> [mm_interconnect_0:sysid_qsys_0_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_translator_001:in_reset, sdram_pll:reset, sysid_qsys_0:reset_n]
 	wire         rst_controller_001_reset_out_reset_req;                       // rst_controller_001:reset_req -> [onchip_memory2_0:reset_req, rst_translator_001:reset_req_in]
 	wire         rst_controller_002_reset_out_reset;                           // rst_controller_002:reset_out -> [mm_interconnect_0:sdram_reset_reset_bridge_in_reset_reset, sdram:reset_n]
-
-	chess_game_interface chess_game_core_0 (
-		.CLK         (clk_clk),                                                    //         CLK.clk
-		.RESET       (rst_controller_reset_out_reset),                             //       RESET.reset
-		.ADDR        (mm_interconnect_0_chess_game_core_0_chess_slave_address),    // Chess_Slave.address
-		.READ        (mm_interconnect_0_chess_game_core_0_chess_slave_read),       //            .read
-		.WRITE       (mm_interconnect_0_chess_game_core_0_chess_slave_write),      //            .write
-		.CS          (mm_interconnect_0_chess_game_core_0_chess_slave_chipselect), //            .chipselect
-		.BYTE_EN     (mm_interconnect_0_chess_game_core_0_chess_slave_byteenable), //            .byteenable
-		.WRITE_DATA  (mm_interconnect_0_chess_game_core_0_chess_slave_writedata),  //            .writedata
-		.READ_DATA   (mm_interconnect_0_chess_game_core_0_chess_slave_readdata),   //            .readdata
-		.EXPORT_DATA (chess_export_EXPORT_DATA)                                    // EXPORT_DATA.EXPORT_DATA
-	);
 
 	lab8_soc_jtag_uart_0 jtag_uart_0 (
 		.clk            (clk_clk),                                                     //               clk.clk
@@ -321,13 +300,6 @@ module lab8_soc (
 		.nios2_qsys_0_instruction_master_waitrequest      (nios2_qsys_0_instruction_master_waitrequest),                  //                                           .waitrequest
 		.nios2_qsys_0_instruction_master_read             (nios2_qsys_0_instruction_master_read),                         //                                           .read
 		.nios2_qsys_0_instruction_master_readdata         (nios2_qsys_0_instruction_master_readdata),                     //                                           .readdata
-		.chess_game_core_0_Chess_Slave_address            (mm_interconnect_0_chess_game_core_0_chess_slave_address),      //              chess_game_core_0_Chess_Slave.address
-		.chess_game_core_0_Chess_Slave_write              (mm_interconnect_0_chess_game_core_0_chess_slave_write),        //                                           .write
-		.chess_game_core_0_Chess_Slave_read               (mm_interconnect_0_chess_game_core_0_chess_slave_read),         //                                           .read
-		.chess_game_core_0_Chess_Slave_readdata           (mm_interconnect_0_chess_game_core_0_chess_slave_readdata),     //                                           .readdata
-		.chess_game_core_0_Chess_Slave_writedata          (mm_interconnect_0_chess_game_core_0_chess_slave_writedata),    //                                           .writedata
-		.chess_game_core_0_Chess_Slave_byteenable         (mm_interconnect_0_chess_game_core_0_chess_slave_byteenable),   //                                           .byteenable
-		.chess_game_core_0_Chess_Slave_chipselect         (mm_interconnect_0_chess_game_core_0_chess_slave_chipselect),   //                                           .chipselect
 		.jtag_uart_0_avalon_jtag_slave_address            (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),      //              jtag_uart_0_avalon_jtag_slave.address
 		.jtag_uart_0_avalon_jtag_slave_write              (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),        //                                           .write
 		.jtag_uart_0_avalon_jtag_slave_read               (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read),         //                                           .read
