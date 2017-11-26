@@ -1,0 +1,73 @@
+module testbench();
+
+timeunit 10ns;
+timeprecision 1ns;
+
+logic CLK = 0;
+logic RESET;
+logic READ = 0;
+logic WRITE = 0;
+logic CS = 0;
+logic [3:0] BYTE_EN;
+logic [7:0] ADDR;
+logic [31:0] WRITEDATA;
+logic [31:0] READDATA;
+logic [31:0] EXPORT_DATA; 
+
+chess_game_interface tr(.*);
+
+always begin: CLOCK_GENERATION
+	#1 CLK = ~CLK;
+end
+
+initial begin: CLOCK_INITIALIZATION
+	CLK = 0;
+end
+
+initial begin: TEST_VECTORS
+	RESET = 1; // Toggle Reset
+	AVL_READ = 0;
+	AVL_WRITE = 0;
+	AVL_CS = 0;
+	AVL_BYTE_EN = 4'b0;
+	AVL_ADDR = 4'b0;
+	AVL_WRITEDATA = 32'b0;
+	
+	#2 RESET = 0;
+	
+	// Load Starting Data
+	// Load KEY
+	#2 AVL_CS = 1; 
+		AVL_WRITE = 1;
+		AVL_BYTE_EN = 4'b1111;
+		AVL_ADDR = 4'b0011;
+		AVL_WRITEDATA = 32'h00010203;
+	#2 AVL_ADDR = 4'b0010;
+		AVL_WRITEDATA = 32'h04050607;
+	#2 AVL_ADDR = 4'b0001;
+		AVL_WRITEDATA = 32'h08090a0b;
+	#2 AVL_ADDR = 4'b0000;
+		AVL_WRITEDATA = 32'h0c0d0e0f;
+		
+	// Load ENCODED MESSAGE
+	#2 AVL_ADDR = 4'b0111;
+	   AVL_WRITEDATA = 32'hdaec3055;
+	#2 AVL_ADDR = 4'b0110;
+	   AVL_WRITEDATA = 32'hdf058e1c;
+	#2 AVL_ADDR = 4'b0101;
+	   AVL_WRITEDATA = 32'h39e814ea;
+	#2 AVL_ADDR = 4'b0100;
+	   AVL_WRITEDATA = 32'h76f6747e;
+		
+	// Wait for the key to finish expanding
+	#20;
+		
+	// Start decoding
+	#2 AVL_WRITEDATA = 1;
+		AVL_ADDR = 4'b1110;
+
+	
+	
+end
+
+endmodule
