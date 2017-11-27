@@ -6,17 +6,41 @@ Dong Kai Wang, Fall 2017
 For use with ECE 385 Experiment 9
 University of Illinois ECE Department
 
-Register Map:
- 0-7:   a1-a8
- 8-15:  b1-b8
- 16-23: c1-c8
- 24-31: d1-d8
- 32-39: e1-e8
- 40-47: f1-f8
- 48-55: g1-g8
- 56-63: h1-h8
-
-************************************************************************/
+---------------Register Map-------------------
+ 
+ REG 0:|      A4      |      A3      |      A2      |      A1      |
+       +--------------+-------------+--------------+---------------+
+ REG 1:|      A8      |      A7      |      A6      |      A5      |
+       +--------------+-------------+--------------+---------------+
+ REG 2:|      B4      |      B3      |      B2      |      B1      |
+       +--------------+-------------+--------------+---------------+
+ REG 3:|      B8      |      B7      |      B6      |      B5      |
+       +--------------+-------------+--------------+---------------+
+ REG 4:|      C4      |      C3      |      C2      |      C1      |
+       +--------------+-------------+--------------+---------------+
+ REG 5:|      C8      |      C7      |      C6      |      C5      |
+       +--------------+-------------+--------------+---------------+
+ REG 6:|      D4      |      D3      |      D2      |      D1      |
+       +--------------+-------------+--------------+---------------+
+ REG 7:|      D8      |      D7      |      D6      |      D5      |
+       +--------------+-------------+--------------+---------------+
+ REG 8:|      E4      |      E3      |      E2      |      E1      |
+       +--------------+-------------+--------------+---------------+
+ REG 9:|      E8      |      E7      |      E6      |      E5      |
+       +--------------+-------------+--------------+---------------+
+ REG 10|    : F4      |      F3      |      F2      |      F1      |
+       +--------------+-------------+--------------+---------------+
+ REG 11|    : F8      |      F7      |      F6      |      F5      |
+       +--------------+-------------+--------------+---------------+
+ REG 12|    : G4      |      G3      |      G2      |      G1      |
+       +--------------+-------------+--------------+---------------+
+ REG 13|    : G8      |      G7      |      G6      |      G5      |
+       +--------------+-------------+--------------+---------------+
+ REG 14|    : H4      |      H3      |      H2      |      H1      |
+       +--------------+-------------+--------------+---------------+
+ REG 15|    : H8      |      H7      |      H6      |      H5      |
+ 
+ ****************************************************************/
 
 module chess_game_interface(
     input  logic        CLK,
@@ -25,7 +49,7 @@ module chess_game_interface(
     input  logic        WRITE,
     input  logic        CS,
     input  logic [3:0]  BYTE_EN,
-    input  logic [7:0]  ADDR,
+    input  logic [4:0]  ADDR,
     input  logic [31:0] WRITE_DATA,
     output logic [31:0] READ_DATA,
     output logic [31:0] EXPORT_DATA
@@ -36,24 +60,40 @@ module chess_game_interface(
     logic [31:0] WRITEDATA;
     
     // Declare internal logic connections for new data input
-    logic [31:0] A_next [7:0];
-    logic [31:0] B_next [7:0];
-    logic [31:0] C_next [7:0];
-    logic [31:0] D_next [7:0];
-    logic [31:0] E_next [7:0];
-    logic [31:0] F_next [7:0];
-    logic [31:0] G_next [7:0];
-    logic [31:0] H_next [7:0];
+    logic [31:0] A4toA1_next;
+    logic [31:0] A8toA5_next;
+    logic [31:0] B4toB1_next;
+    logic [31:0] B8toB5_next;
+    logic [31:0] C4toC1_next;
+    logic [31:0] C8toC5_next;
+    logic [31:0] D4toD1_next;
+    logic [31:0] D8toD5_next;
+    logic [31:0] E4toE1_next;
+    logic [31:0] E8toE5_next;
+    logic [31:0] F4toF1_next;
+    logic [31:0] F8toF5_next;
+    logic [31:0] G4toG1_next;
+    logic [31:0] G8toG5_next;
+    logic [31:0] H4toH1_next;
+    logic [31:0] H8toH5_next;
     
     // Declare internal logic connections for recycled data
-    logic [31:0] A_cur [7:0];
-    logic [31:0] B_cur [7:0];
-    logic [31:0] C_cur [7:0];
-    logic [31:0] D_cur [7:0];
-    logic [31:0] E_cur [7:0];
-    logic [31:0] F_cur [7:0];
-    logic [31:0] G_cur [7:0];
-    logic [31:0] H_cur [7:0];
+    logic [31:0] A4toA1_cur;
+    logic [31:0] A8toA5_cur;
+    logic [31:0] B4toB1_cur;
+    logic [31:0] B8toB5_cur;
+    logic [31:0] C4toC1_cur;
+    logic [31:0] C8toC5_cur;
+    logic [31:0] D4toD1_cur;
+    logic [31:0] D8toD5_cur;
+    logic [31:0] E4toE1_next;
+    logic [31:0] E8toE5_next;
+    logic [31:0] F4toF1_next;
+    logic [31:0] F8toF5_next;
+    logic [31:0] G4toG1_next;
+    logic [31:0] G8toG5_next;
+    logic [31:0] H4toH1_next;
+    logic [31:0] H8toH5_next;
     
     // Write routing
     always_comb begin
@@ -72,229 +112,65 @@ module chess_game_interface(
         end
     end
     
-    // Declare muxes for each of the 64 registers
-    reg_mux M_A1(.WRITE, .ADDR, .NAME(6'h00), .WRITEDATA, .RECDATA(A_cur[0]), .data_out(A_next[0]));
-    reg_mux M_A2(.WRITE, .ADDR, .NAME(6'h01), .WRITEDATA, .RECDATA(A_cur[1]), .data_out(A_next[1]));
-    reg_mux M_A3(.WRITE, .ADDR, .NAME(6'h02), .WRITEDATA, .RECDATA(A_cur[2]), .data_out(A_next[2]));
-    reg_mux M_A4(.WRITE, .ADDR, .NAME(6'h03), .WRITEDATA, .RECDATA(A_cur[3]), .data_out(A_next[3]));
-    reg_mux M_A5(.WRITE, .ADDR, .NAME(6'h04), .WRITEDATA, .RECDATA(A_cur[4]), .data_out(A_next[4]));
-    reg_mux M_A6(.WRITE, .ADDR, .NAME(6'h05), .WRITEDATA, .RECDATA(A_cur[5]), .data_out(A_next[5]));
-    reg_mux M_A7(.WRITE, .ADDR, .NAME(6'h06), .WRITEDATA, .RECDATA(A_cur[6]), .data_out(A_next[6]));
-    reg_mux M_A8(.WRITE, .ADDR, .NAME(6'h07), .WRITEDATA, .RECDATA(A_cur[7]), .data_out(A_next[7]));
+    // Declare muxes for each of the 16 registers
+    reg_mux M_A4toA1(.WRITE, .ADDR, .NAME(4'h0), .WRITEDATA, .RECDATA(A4toA1_cur), .data_out(A4toA1_next));
+    reg_mux M_A8toA5(.WRITE, .ADDR, .NAME(4'h1), .WRITEDATA, .RECDATA(A8toA5_cur), .data_out(A8toA5_next));
+    reg_mux M_B4toB1(.WRITE, .ADDR, .NAME(4'h2), .WRITEDATA, .RECDATA(B4toB1_cur), .data_out(B4toB1_next));
+    reg_mux M_B8toB5(.WRITE, .ADDR, .NAME(4'h3), .WRITEDATA, .RECDATA(B8toB5_cur), .data_out(B8toB5_next));
+    reg_mux M_C4toC1(.WRITE, .ADDR, .NAME(4'h4), .WRITEDATA, .RECDATA(C4toC1_cur), .data_out(C4toC1_next));
+    reg_mux M_C8toC5(.WRITE, .ADDR, .NAME(4'h5), .WRITEDATA, .RECDATA(C8toC5_cur), .data_out(C8toC5_next));
+    reg_mux M_D4toD1(.WRITE, .ADDR, .NAME(4'h6), .WRITEDATA, .RECDATA(D4toD1_cur), .data_out(D4toD1_next));
+    reg_mux M_D8toD5(.WRITE, .ADDR, .NAME(4'h7), .WRITEDATA, .RECDATA(D8toD5_cur), .data_out(D8toD5_next));
+    reg_mux M_E4toE1(.WRITE, .ADDR, .NAME(4'h8), .WRITEDATA, .RECDATA(E4toE1_cur), .data_out(E4toE1_next));
+    reg_mux M_E8toE5(.WRITE, .ADDR, .NAME(4'h9), .WRITEDATA, .RECDATA(E8toE5_cur), .data_out(E8toE5_next));
+    reg_mux M_F4toF1(.WRITE, .ADDR, .NAME(4'hA), .WRITEDATA, .RECDATA(F4toF1_cur), .data_out(F4toF1_next));
+    reg_mux M_F8toF5(.WRITE, .ADDR, .NAME(4'hB), .WRITEDATA, .RECDATA(F8toF5_cur), .data_out(F8toF5_next));
+    reg_mux M_G4toG1(.WRITE, .ADDR, .NAME(4'hC), .WRITEDATA, .RECDATA(G4toG1_cur), .data_out(G4toG1_next));
+    reg_mux M_G8toG5(.WRITE, .ADDR, .NAME(4'hD), .WRITEDATA, .RECDATA(G8toG5_cur), .data_out(G8toG5_next));
+    reg_mux M_H4toH1(.WRITE, .ADDR, .NAME(4'hE), .WRITEDATA, .RECDATA(H4toH1_cur), .data_out(H4toH1_next));
+    reg_mux M_H8toH5(.WRITE, .ADDR, .NAME(4'hF), .WRITEDATA, .RECDATA(H8toH5_cur), .data_out(H8toH5_next));
     
-    reg_mux M_B1(.WRITE, .ADDR, .NAME(6'h08), .WRITEDATA, .RECDATA(B_cur[0]), .data_out(B_next[0]));
-    reg_mux M_B2(.WRITE, .ADDR, .NAME(6'h09), .WRITEDATA, .RECDATA(B_cur[1]), .data_out(B_next[1]));
-    reg_mux M_B3(.WRITE, .ADDR, .NAME(6'h0A), .WRITEDATA, .RECDATA(B_cur[2]), .data_out(B_next[2]));
-    reg_mux M_B4(.WRITE, .ADDR, .NAME(6'h0B), .WRITEDATA, .RECDATA(B_cur[3]), .data_out(B_next[3]));
-    reg_mux M_B5(.WRITE, .ADDR, .NAME(6'h0C), .WRITEDATA, .RECDATA(B_cur[4]), .data_out(B_next[4]));
-    reg_mux M_B6(.WRITE, .ADDR, .NAME(6'h0D), .WRITEDATA, .RECDATA(B_cur[5]), .data_out(B_next[5]));
-    reg_mux M_B7(.WRITE, .ADDR, .NAME(6'h0E), .WRITEDATA, .RECDATA(B_cur[6]), .data_out(B_next[6]));
-    reg_mux M_B8(.WRITE, .ADDR, .NAME(6'h0F), .WRITEDATA, .RECDATA(B_cur[7]), .data_out(B_next[7]));
+  
+    // Declare the 16 registers
+    square_data_reg R_A4toA1(.CLK, .RESET, .REG_DATA_IN(A4toA1_next), .REG_DATA_OUT(A4toA1_cur));
+    square_data_reg R_A8toA5(.CLK, .RESET, .REG_DATA_IN(A8toA5_next), .REG_DATA_OUT(A8toA5_cur));
+    square_data_reg R_B4toB1(.CLK, .RESET, .REG_DATA_IN(B4toB1_next), .REG_DATA_OUT(B4toB1_cur));
+    square_data_reg R_B8toB5(.CLK, .RESET, .REG_DATA_IN(B8toB5_next), .REG_DATA_OUT(B8toB5_cur));
+    square_data_reg R_C4toC1(.CLK, .RESET, .REG_DATA_IN(C4toC1_next), .REG_DATA_OUT(C4toC1_cur));
+    square_data_reg R_C8toC5(.CLK, .RESET, .REG_DATA_IN(C8toC5_next), .REG_DATA_OUT(C8toC5_cur));
+    square_data_reg R_D4toD1(.CLK, .RESET, .REG_DATA_IN(D4toD1_next), .REG_DATA_OUT(D4toD1_cur));
+    square_data_reg R_D8toD5(.CLK, .RESET, .REG_DATA_IN(D8toD5_next), .REG_DATA_OUT(D8toD5_cur));
+    square_data_reg R_E4toE1(.CLK, .RESET, .REG_DATA_IN(E4toE1_next), .REG_DATA_OUT(E4toE1_cur));
+    square_data_reg R_E8toE5(.CLK, .RESET, .REG_DATA_IN(E8toE5_next), .REG_DATA_OUT(E8toE5_cur));
+    square_data_reg R_F4toF1(.CLK, .RESET, .REG_DATA_IN(F4toF1_next), .REG_DATA_OUT(F4toF1_cur));
+    square_data_reg R_F8toF5(.CLK, .RESET, .REG_DATA_IN(F8toF5_next), .REG_DATA_OUT(F8toF5_cur));
+    square_data_reg R_G4toG1(.CLK, .RESET, .REG_DATA_IN(G4toG1_next), .REG_DATA_OUT(G4toG1_cur));
+    square_data_reg R_G8toG5(.CLK, .RESET, .REG_DATA_IN(G8toG5_next), .REG_DATA_OUT(G8toG1_cur));
+    square_data_reg R_H4toH1(.CLK, .RESET, .REG_DATA_IN(H4toH1_next), .REG_DATA_OUT(H4toH1_cur));
+    square_data_reg R_H8toH5(.CLK, .RESET, .REG_DATA_IN(H8toH5_next), .REG_DATA_OUT(H8toH5_cur));
     
-    reg_mux M_C1(.WRITE, .ADDR, .NAME(6'h10), .WRITEDATA, .RECDATA(C_cur[0]), .data_out(C_next[0]));
-    reg_mux M_C2(.WRITE, .ADDR, .NAME(6'h11), .WRITEDATA, .RECDATA(C_cur[1]), .data_out(C_next[1]));
-    reg_mux M_C3(.WRITE, .ADDR, .NAME(6'h12), .WRITEDATA, .RECDATA(C_cur[2]), .data_out(C_next[2]));
-    reg_mux M_C4(.WRITE, .ADDR, .NAME(6'h13), .WRITEDATA, .RECDATA(C_cur[3]), .data_out(C_next[3]));
-    reg_mux M_C5(.WRITE, .ADDR, .NAME(6'h14), .WRITEDATA, .RECDATA(C_cur[4]), .data_out(C_next[4]));
-    reg_mux M_C6(.WRITE, .ADDR, .NAME(6'h15), .WRITEDATA, .RECDATA(C_cur[5]), .data_out(C_next[5]));
-    reg_mux M_C7(.WRITE, .ADDR, .NAME(6'h16), .WRITEDATA, .RECDATA(C_cur[6]), .data_out(C_next[6]));
-    reg_mux M_C8(.WRITE, .ADDR, .NAME(6'h17), .WRITEDATA, .RECDATA(C_cur[7]), .data_out(C_next[7]));
-    
-    reg_mux M_D1(.WRITE, .ADDR, .NAME(6'h18), .WRITEDATA, .RECDATA(D_cur[0]), .data_out(D_next[0]));
-    reg_mux M_D2(.WRITE, .ADDR, .NAME(6'h19), .WRITEDATA, .RECDATA(D_cur[1]), .data_out(D_next[1]));
-    reg_mux M_D3(.WRITE, .ADDR, .NAME(6'h1A), .WRITEDATA, .RECDATA(D_cur[2]), .data_out(D_next[2]));
-    reg_mux M_D4(.WRITE, .ADDR, .NAME(6'h1B), .WRITEDATA, .RECDATA(D_cur[3]), .data_out(D_next[3]));
-    reg_mux M_D5(.WRITE, .ADDR, .NAME(6'h1C), .WRITEDATA, .RECDATA(D_cur[4]), .data_out(D_next[4]));
-    reg_mux M_D6(.WRITE, .ADDR, .NAME(6'h1D), .WRITEDATA, .RECDATA(D_cur[5]), .data_out(D_next[5]));
-    reg_mux M_D7(.WRITE, .ADDR, .NAME(6'h1E), .WRITEDATA, .RECDATA(D_cur[6]), .data_out(D_next[6]));
-    reg_mux M_D8(.WRITE, .ADDR, .NAME(6'h1F), .WRITEDATA, .RECDATA(D_cur[7]), .data_out(D_next[7]));
-    
-    reg_mux M_E1(.WRITE, .ADDR, .NAME(6'h20), .WRITEDATA, .RECDATA(E_cur[0]), .data_out(E_next[0]));
-    reg_mux M_E2(.WRITE, .ADDR, .NAME(6'h21), .WRITEDATA, .RECDATA(E_cur[1]), .data_out(E_next[1]));
-    reg_mux M_E3(.WRITE, .ADDR, .NAME(6'h22), .WRITEDATA, .RECDATA(E_cur[2]), .data_out(E_next[2]));
-    reg_mux M_E4(.WRITE, .ADDR, .NAME(6'h23), .WRITEDATA, .RECDATA(E_cur[3]), .data_out(E_next[3]));
-    reg_mux M_E5(.WRITE, .ADDR, .NAME(6'h24), .WRITEDATA, .RECDATA(E_cur[4]), .data_out(E_next[4]));
-    reg_mux M_E6(.WRITE, .ADDR, .NAME(6'h25), .WRITEDATA, .RECDATA(E_cur[5]), .data_out(E_next[5]));
-    reg_mux M_E7(.WRITE, .ADDR, .NAME(6'h26), .WRITEDATA, .RECDATA(E_cur[6]), .data_out(E_next[6]));
-    reg_mux M_E8(.WRITE, .ADDR, .NAME(6'h27), .WRITEDATA, .RECDATA(E_cur[7]), .data_out(E_next[7]));
-    
-    reg_mux M_F1(.WRITE, .ADDR, .NAME(6'h28), .WRITEDATA, .RECDATA(F_cur[0]), .data_out(F_next[0]));
-    reg_mux M_F2(.WRITE, .ADDR, .NAME(6'h29), .WRITEDATA, .RECDATA(F_cur[1]), .data_out(F_next[1]));
-    reg_mux M_F3(.WRITE, .ADDR, .NAME(6'h2A), .WRITEDATA, .RECDATA(F_cur[2]), .data_out(F_next[2]));
-    reg_mux M_F4(.WRITE, .ADDR, .NAME(6'h2B), .WRITEDATA, .RECDATA(F_cur[3]), .data_out(F_next[3]));
-    reg_mux M_F5(.WRITE, .ADDR, .NAME(6'h2C), .WRITEDATA, .RECDATA(F_cur[4]), .data_out(F_next[4]));
-    reg_mux M_F6(.WRITE, .ADDR, .NAME(6'h2D), .WRITEDATA, .RECDATA(F_cur[5]), .data_out(F_next[5]));
-    reg_mux M_F7(.WRITE, .ADDR, .NAME(6'h2E), .WRITEDATA, .RECDATA(F_cur[6]), .data_out(F_next[6]));
-    reg_mux M_F8(.WRITE, .ADDR, .NAME(6'h2F), .WRITEDATA, .RECDATA(F_cur[7]), .data_out(F_next[7]));
-    
-    reg_mux M_G1(.WRITE, .ADDR, .NAME(6'h30), .WRITEDATA, .RECDATA(G_cur[0]), .data_out(G_next[0]));
-    reg_mux M_G2(.WRITE, .ADDR, .NAME(6'h31), .WRITEDATA, .RECDATA(G_cur[1]), .data_out(G_next[1]));
-    reg_mux M_G3(.WRITE, .ADDR, .NAME(6'h32), .WRITEDATA, .RECDATA(G_cur[2]), .data_out(G_next[2]));
-    reg_mux M_G4(.WRITE, .ADDR, .NAME(6'h33), .WRITEDATA, .RECDATA(G_cur[3]), .data_out(G_next[3]));
-    reg_mux M_G5(.WRITE, .ADDR, .NAME(6'h34), .WRITEDATA, .RECDATA(G_cur[4]), .data_out(G_next[4]));
-    reg_mux M_G6(.WRITE, .ADDR, .NAME(6'h35), .WRITEDATA, .RECDATA(G_cur[5]), .data_out(G_next[5]));
-    reg_mux M_G7(.WRITE, .ADDR, .NAME(6'h36), .WRITEDATA, .RECDATA(G_cur[6]), .data_out(G_next[6]));
-    reg_mux M_G8(.WRITE, .ADDR, .NAME(6'h37), .WRITEDATA, .RECDATA(G_cur[7]), .data_out(G_next[7]));
-    
-    reg_mux M_H1(.WRITE, .ADDR, .NAME(6'h38), .WRITEDATA, .RECDATA(H_cur[0]), .data_out(H_next[0]));
-    reg_mux M_H2(.WRITE, .ADDR, .NAME(6'h39), .WRITEDATA, .RECDATA(H_cur[1]), .data_out(H_next[1]));
-    reg_mux M_H3(.WRITE, .ADDR, .NAME(6'h3A), .WRITEDATA, .RECDATA(H_cur[2]), .data_out(H_next[2]));
-    reg_mux M_H4(.WRITE, .ADDR, .NAME(6'h3B), .WRITEDATA, .RECDATA(H_cur[3]), .data_out(H_next[3]));
-    reg_mux M_H5(.WRITE, .ADDR, .NAME(6'h3C), .WRITEDATA, .RECDATA(H_cur[4]), .data_out(H_next[4]));
-    reg_mux M_H6(.WRITE, .ADDR, .NAME(6'h3D), .WRITEDATA, .RECDATA(H_cur[5]), .data_out(H_next[5]));
-    reg_mux M_H7(.WRITE, .ADDR, .NAME(6'h3E), .WRITEDATA, .RECDATA(H_cur[6]), .data_out(H_next[6]));
-    reg_mux M_H8(.WRITE, .ADDR, .NAME(6'h3F), .WRITEDATA, .RECDATA(H_cur[7]), .data_out(H_next[7]));
-
-    // Declare the 64 registers
-    square_data_reg R_A1(.CLK, .RESET, .REG_DATA_IN(A_next[0]), .REG_DATA_OUT(A_cur[0]));
-    square_data_reg R_A2(.CLK, .RESET, .REG_DATA_IN(A_next[1]), .REG_DATA_OUT(A_cur[1]));
-    square_data_reg R_A3(.CLK, .RESET, .REG_DATA_IN(A_next[2]), .REG_DATA_OUT(A_cur[2]));
-    square_data_reg R_A4(.CLK, .RESET, .REG_DATA_IN(A_next[3]), .REG_DATA_OUT(A_cur[3]));
-    square_data_reg R_A5(.CLK, .RESET, .REG_DATA_IN(A_next[4]), .REG_DATA_OUT(A_cur[4]));
-    square_data_reg R_A6(.CLK, .RESET, .REG_DATA_IN(A_next[5]), .REG_DATA_OUT(A_cur[5]));
-    square_data_reg R_A7(.CLK, .RESET, .REG_DATA_IN(A_next[6]), .REG_DATA_OUT(A_cur[6]));
-    square_data_reg R_A8(.CLK, .RESET, .REG_DATA_IN(A_next[7]), .REG_DATA_OUT(A_cur[7]));
-    
-    square_data_reg R_B1(.CLK, .RESET, .REG_DATA_IN(B_next[0]), .REG_DATA_OUT(B_cur[0]));
-    square_data_reg R_B2(.CLK, .RESET, .REG_DATA_IN(B_next[1]), .REG_DATA_OUT(B_cur[1]));
-    square_data_reg R_B3(.CLK, .RESET, .REG_DATA_IN(B_next[2]), .REG_DATA_OUT(B_cur[2]));
-    square_data_reg R_B4(.CLK, .RESET, .REG_DATA_IN(B_next[3]), .REG_DATA_OUT(B_cur[3]));
-    square_data_reg R_B5(.CLK, .RESET, .REG_DATA_IN(B_next[4]), .REG_DATA_OUT(B_cur[4]));
-    square_data_reg R_B6(.CLK, .RESET, .REG_DATA_IN(B_next[5]), .REG_DATA_OUT(B_cur[5]));
-    square_data_reg R_B7(.CLK, .RESET, .REG_DATA_IN(B_next[6]), .REG_DATA_OUT(B_cur[6]));
-    square_data_reg R_B8(.CLK, .RESET, .REG_DATA_IN(B_next[7]), .REG_DATA_OUT(B_cur[7]));
-    
-    square_data_reg R_C1(.CLK, .RESET, .REG_DATA_IN(C_next[0]), .REG_DATA_OUT(C_cur[0]));
-    square_data_reg R_C2(.CLK, .RESET, .REG_DATA_IN(C_next[1]), .REG_DATA_OUT(C_cur[1]));
-    square_data_reg R_C3(.CLK, .RESET, .REG_DATA_IN(C_next[2]), .REG_DATA_OUT(C_cur[2]));
-    square_data_reg R_C4(.CLK, .RESET, .REG_DATA_IN(C_next[3]), .REG_DATA_OUT(C_cur[3]));
-    square_data_reg R_C5(.CLK, .RESET, .REG_DATA_IN(C_next[4]), .REG_DATA_OUT(C_cur[4]));
-    square_data_reg R_C6(.CLK, .RESET, .REG_DATA_IN(C_next[5]), .REG_DATA_OUT(C_cur[5]));
-    square_data_reg R_C7(.CLK, .RESET, .REG_DATA_IN(C_next[6]), .REG_DATA_OUT(C_cur[6]));
-    square_data_reg R_C8(.CLK, .RESET, .REG_DATA_IN(C_next[7]), .REG_DATA_OUT(C_cur[7]));
-    
-    square_data_reg R_D1(.CLK, .RESET, .REG_DATA_IN(D_next[0]), .REG_DATA_OUT(D_cur[0]));
-    square_data_reg R_D2(.CLK, .RESET, .REG_DATA_IN(D_next[1]), .REG_DATA_OUT(D_cur[1]));
-    square_data_reg R_D3(.CLK, .RESET, .REG_DATA_IN(D_next[2]), .REG_DATA_OUT(D_cur[2]));
-    square_data_reg R_D4(.CLK, .RESET, .REG_DATA_IN(D_next[3]), .REG_DATA_OUT(D_cur[3]));
-    square_data_reg R_D5(.CLK, .RESET, .REG_DATA_IN(D_next[4]), .REG_DATA_OUT(D_cur[4]));
-    square_data_reg R_D6(.CLK, .RESET, .REG_DATA_IN(D_next[5]), .REG_DATA_OUT(D_cur[5]));
-    square_data_reg R_D7(.CLK, .RESET, .REG_DATA_IN(D_next[6]), .REG_DATA_OUT(D_cur[6]));
-    square_data_reg R_D8(.CLK, .RESET, .REG_DATA_IN(D_next[7]), .REG_DATA_OUT(D_cur[7]));
-    
-    square_data_reg R_E1(.CLK, .RESET, .REG_DATA_IN(E_next[0]), .REG_DATA_OUT(E_cur[0]));
-    square_data_reg R_E2(.CLK, .RESET, .REG_DATA_IN(E_next[1]), .REG_DATA_OUT(E_cur[1]));
-    square_data_reg R_E3(.CLK, .RESET, .REG_DATA_IN(E_next[2]), .REG_DATA_OUT(E_cur[2]));
-    square_data_reg R_E4(.CLK, .RESET, .REG_DATA_IN(E_next[3]), .REG_DATA_OUT(E_cur[3]));
-    square_data_reg R_E5(.CLK, .RESET, .REG_DATA_IN(E_next[4]), .REG_DATA_OUT(E_cur[4]));
-    square_data_reg R_E6(.CLK, .RESET, .REG_DATA_IN(E_next[5]), .REG_DATA_OUT(E_cur[5]));
-    square_data_reg R_E7(.CLK, .RESET, .REG_DATA_IN(E_next[6]), .REG_DATA_OUT(E_cur[6]));
-    square_data_reg R_E8(.CLK, .RESET, .REG_DATA_IN(E_next[7]), .REG_DATA_OUT(E_cur[7]));
-    
-    square_data_reg R_F1(.CLK, .RESET, .REG_DATA_IN(F_next[0]), .REG_DATA_OUT(F_cur[0]));
-    square_data_reg R_F2(.CLK, .RESET, .REG_DATA_IN(F_next[1]), .REG_DATA_OUT(F_cur[1]));
-    square_data_reg R_F3(.CLK, .RESET, .REG_DATA_IN(F_next[2]), .REG_DATA_OUT(F_cur[2]));
-    square_data_reg R_F4(.CLK, .RESET, .REG_DATA_IN(F_next[3]), .REG_DATA_OUT(F_cur[3]));
-    square_data_reg R_F5(.CLK, .RESET, .REG_DATA_IN(F_next[4]), .REG_DATA_OUT(F_cur[4]));
-    square_data_reg R_F6(.CLK, .RESET, .REG_DATA_IN(F_next[5]), .REG_DATA_OUT(F_cur[5]));
-    square_data_reg R_F7(.CLK, .RESET, .REG_DATA_IN(F_next[6]), .REG_DATA_OUT(F_cur[6]));
-    square_data_reg R_F8(.CLK, .RESET, .REG_DATA_IN(F_next[7]), .REG_DATA_OUT(F_cur[7]));
-    
-    square_data_reg R_G1(.CLK, .RESET, .REG_DATA_IN(G_next[0]), .REG_DATA_OUT(G_cur[0]));
-    square_data_reg R_G2(.CLK, .RESET, .REG_DATA_IN(G_next[1]), .REG_DATA_OUT(G_cur[1]));
-    square_data_reg R_G3(.CLK, .RESET, .REG_DATA_IN(G_next[2]), .REG_DATA_OUT(G_cur[2]));
-    square_data_reg R_G4(.CLK, .RESET, .REG_DATA_IN(G_next[3]), .REG_DATA_OUT(G_cur[3]));
-    square_data_reg R_G5(.CLK, .RESET, .REG_DATA_IN(G_next[4]), .REG_DATA_OUT(G_cur[4]));
-    square_data_reg R_G6(.CLK, .RESET, .REG_DATA_IN(G_next[5]), .REG_DATA_OUT(G_cur[5]));
-    square_data_reg R_G7(.CLK, .RESET, .REG_DATA_IN(G_next[6]), .REG_DATA_OUT(G_cur[6]));
-    square_data_reg R_G8(.CLK, .RESET, .REG_DATA_IN(G_next[7]), .REG_DATA_OUT(G_cur[7]));
-    
-    square_data_reg R_H1(.CLK, .RESET, .REG_DATA_IN(H_next[0]), .REG_DATA_OUT(H_cur[0]));
-    square_data_reg R_H2(.CLK, .RESET, .REG_DATA_IN(H_next[1]), .REG_DATA_OUT(H_cur[1]));
-    square_data_reg R_H3(.CLK, .RESET, .REG_DATA_IN(H_next[2]), .REG_DATA_OUT(H_cur[2]));
-    square_data_reg R_H4(.CLK, .RESET, .REG_DATA_IN(H_next[3]), .REG_DATA_OUT(H_cur[3]));
-    square_data_reg R_H5(.CLK, .RESET, .REG_DATA_IN(H_next[4]), .REG_DATA_OUT(H_cur[4]));
-    square_data_reg R_H6(.CLK, .RESET, .REG_DATA_IN(H_next[5]), .REG_DATA_OUT(H_cur[5]));
-    square_data_reg R_H7(.CLK, .RESET, .REG_DATA_IN(H_next[6]), .REG_DATA_OUT(H_cur[6]));
-    square_data_reg R_H8(.CLK, .RESET, .REG_DATA_IN(H_next[7]), .REG_DATA_OUT(H_cur[7]));
-
     // Read routing
     assign READ_DATA = read_data;
     always_comb begin
         read_data = 32'b0;
         if(READ & CS == 1) begin
             case(ADDR)
-                6'h00: read_data = A_cur[0];
-                6'h01: read_data = A_cur[1];
-                6'h02: read_data = A_cur[2];
-                6'h03: read_data = A_cur[3];
-                6'h04: read_data = A_cur[4];
-                6'h05: read_data = A_cur[5];
-                6'h06: read_data = A_cur[6];
-                6'h07: read_data = A_cur[7];
-                
-                6'h08: read_data = B_cur[0];
-                6'h09: read_data = B_cur[1];
-                6'h0A: read_data = B_cur[2];
-                6'h0B: read_data = B_cur[3];
-                6'h0C: read_data = B_cur[4];
-                6'h0D: read_data = B_cur[5];
-                6'h0E: read_data = B_cur[6];
-                6'h0F: read_data = B_cur[7];
-                
-                6'h10: read_data = C_cur[0];
-                6'h11: read_data = C_cur[1];
-                6'h12: read_data = C_cur[2];
-                6'h13: read_data = C_cur[3];
-                6'h14: read_data = C_cur[4];
-                6'h15: read_data = C_cur[5];
-                6'h16: read_data = C_cur[6];
-                6'h17: read_data = C_cur[7];
-                
-                6'h18: read_data = D_cur[0];
-                6'h19: read_data = D_cur[1];
-                6'h1A: read_data = D_cur[2];
-                6'h1B: read_data = D_cur[3];
-                6'h1C: read_data = D_cur[4];
-                6'h1D: read_data = D_cur[5];
-                6'h1E: read_data = D_cur[6];
-                6'h1F: read_data = D_cur[7];
-                
-                6'h20: read_data = E_cur[0];
-                6'h21: read_data = E_cur[1];
-                6'h22: read_data = E_cur[2];
-                6'h23: read_data = E_cur[3];
-                6'h24: read_data = E_cur[4];
-                6'h25: read_data = E_cur[5];
-                6'h26: read_data = E_cur[6];
-                6'h27: read_data = E_cur[7];
-                
-                6'h28: read_data = F_cur[0];
-                6'h29: read_data = F_cur[1];
-                6'h2A: read_data = F_cur[2];
-                6'h2B: read_data = F_cur[3];
-                6'h2C: read_data = F_cur[4];
-                6'h2D: read_data = F_cur[5];
-                6'h2E: read_data = F_cur[6];
-                6'h2F: read_data = F_cur[7];
-                
-                6'h30: read_data = G_cur[0];
-                6'h31: read_data = G_cur[1];
-                6'h32: read_data = G_cur[2];
-                6'h33: read_data = G_cur[3];
-                6'h34: read_data = G_cur[4];
-                6'h35: read_data = G_cur[5];
-                6'h36: read_data = G_cur[6];
-                6'h37: read_data = G_cur[7];
-                
-                6'h38: read_data = H_cur[0];
-                6'h39: read_data = H_cur[1];
-                6'h3A: read_data = H_cur[2];
-                6'h3B: read_data = H_cur[3];
-                6'h3C: read_data = H_cur[4];
-                6'h3D: read_data = H_cur[5];
-                6'h3E: read_data = H_cur[6];
-                6'h3F: read_data = H_cur[7];
+                4'h0: read_data = A4toA1_cur;
+                4'h1: read_data = A8toA5_cur;
+                4'h2: read_data = B4toB1_cur;
+                4'h3: read_data = B8toB5_cur;
+                4'h4: read_data = C4toC1_cur;
+                4'h5: read_data = C8toC5_cur;
+                4'h6: read_data = D4toD1_cur;
+                4'h7: read_data = D8toD5_cur;
+                4'h8: read_data = E4toE1_cur;
+                4'h9: read_data = E8toE5_cur;
+                4'hA: read_data = F4toF1_cur;
+                4'hB: read_data = F8toF5_cur;
+                4'hC: read_data = G4toG1_cur;
+                4'hD: read_data = G8toG5_cur;
+                4'hE: read_data = H4toH1_cur;
+                4'hF: read_data = H8toH5_cur;
             endcase
         end
     end
@@ -330,8 +206,8 @@ endmodule
 ************************************************************************/
 module reg_mux (
 	input logic  WRITE,			
-    input logic  [7:0] ADDR, 
-    input logic  [7:0] NAME, 
+    input logic  [3:0] ADDR, 
+    input logic  [3:0] NAME, 
     input logic  [31:0] WRITEDATA,		
     input logic  [31:0] RECDATA,		
 	output logic [31:0] data_out		

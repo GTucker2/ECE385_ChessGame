@@ -123,7 +123,7 @@ module nios_system (
 	wire         rst_controller_001_reset_out_reset_req;                       // rst_controller_001:reset_req -> [onchip_memory2_0:reset_req, rst_translator_001:reset_req_in]
 	wire         rst_controller_002_reset_out_reset;                           // rst_controller_002:reset_out -> [mm_interconnect_0:sdram_reset_reset_bridge_in_reset_reset, sdram:reset_n]
 
-	chess_game_interface chess_core_0 (
+	new_component chess_core_0 (
 		.CLK         (clk_clk),                                               //         CLK.clk
 		.RESET       (rst_controller_reset_out_reset),                        //       RESET.reset
 		.ADDR        (mm_interconnect_0_chess_core_0_chess_slave_address),    // CHESS_Slave.address
