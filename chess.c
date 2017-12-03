@@ -1,5 +1,5 @@
 /************************************************************************************/
-/*Remember... if something is stupid and it works... it's not stupid.                */
+/*Remember... if something is stupid and it works... it's not stupid.               */
 /*Code Written by Lance Pan & Griffin Tucker Fall 2017                              */
 /*For use in ECE385 Final Project                                                   */
 /*The objective is simple... chess.                                                 */
@@ -11,22 +11,12 @@
 #include <stdio.h>
 
 
-void checkboard_gen_knight(unsigned char ** locboard_temp, unsigned char ** checkboard_rook_temp, unsigned long knight_pos_x, unsigned long knight_pos_y, unsigned long what_knight)
+void checkboard_gen_knight(unsigned char locboard[8][8], unsigned char checkboard_knight[8][8], unsigned long knight_pos_x, unsigned long knight_pos_y, unsigned long what_knight)
 {
 	int knight_track_x;															//local position tracker
 	int knight_track_y;
 	int knight_type;
-	unsigned char checkboard_knight[8][8];
-	unsigned char locboard[8][8];
 	int i, j;
-	for (i = 0; i < 8; i++)				//y initialization
-	{
-		for (j = 0; j < 8; j++)			//x initialization
-		{
-			locboard[j][i] = 0x00;
-			checkboard_knight[j][i] = 0x00;
-		}
-	}
 	knight_type = 1;
 	//	locboard[3][2] = 5;
 	if (locboard[knight_pos_x][knight_pos_y] <= 16)									//case for white piece
@@ -85,40 +75,20 @@ void checkboard_gen_knight(unsigned char ** locboard_temp, unsigned char ** chec
 		if ((knight_track_y >= 0) && (knight_track_y < 9) && (knight_track_x >= 0) && (knight_track_x < 9) && ((locboard[knight_track_x][knight_track_y] <= 16) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] + knight_type;
 	}
-	for (i = 0; i < 8; i++)
-	{
-		for (j = 0; j < 8; j++)
-		{
-			if (j == 7)
-				printf("%x \n", checkboard_knight[j][i]);
-			else
-				printf("%x ", checkboard_knight[j][i]);
-		}
-	}
 }
 
-void checkboard_gen_pawn(unsigned char ** locboard_temp, unsigned char ** checkboard, int pawn_pos_x, int pawn_pos_y, int what_pawn, int jumptracker)
+void checkboard_gen_pawn(unsigned char locboard[8][8], unsigned char  checkboard_pawn[8][8], int pawn_pos_x, int pawn_pos_y, int what_pawn, int jumptracker)
 {
 	unsigned long pawn_track_x;
 	unsigned long pawn_track_y;
 	unsigned long pawn_type;
-	unsigned char checkboard_pawn[8][8];
-	unsigned char locboard[8][8];
 	int i, j;
-	for (i = 0; i < 8; i++)				//y initialization
-	{
-		for (j = 0; j < 8; j++)			//x initialization
-		{
-			locboard[j][i] = 0x00;
-			checkboard_pawn[j][i] = 0x00;
-		}
-	}
 	pawn_type = 0x01;
 	if (locboard[pawn_pos_x][pawn_pos_y] <= 16)					//case for white piece
 	{
 		if (jumptracker == 0)		//initial jump has not occured yet
 		{
-			pawn_track_y = pawn_pos_y + 1;
+			pawn_track_y = pawn_pos_y - 1;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_track_y][pawn_pos_x] == 0))													//includes check for empty space 
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] + pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
@@ -127,16 +97,15 @@ void checkboard_gen_pawn(unsigned char ** locboard_temp, unsigned char ** checkb
 			pawn_track_x = pawn_pos_x - 1;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] > 16))
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] + pawn_type;
-			pawn_track_y = pawn_pos_y + 2;
+			pawn_track_y = pawn_pos_y - 2;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_track_x][pawn_pos_y] == 0))
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] + pawn_type;
 		}
-		else if (jumptracker = 1)
+		else if (jumptracker == 1)
 		{
-			pawn_track_y = pawn_pos_y + 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_track_y][pawn_pos_x] == 0))													//includes check for empty space 
-				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] + pawn_type;
-			printf("still working 3");
+			pawn_track_y = pawn_pos_y - 1;
+			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
+				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] + pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] > 16))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] + pawn_type;
@@ -147,60 +116,40 @@ void checkboard_gen_pawn(unsigned char ** locboard_temp, unsigned char ** checkb
 	}
 	if (locboard[pawn_pos_x][pawn_pos_y] > 16)				//case for black piece
 	{
-		if (jumptracker = 0)		//initial jump has not occured yet
+		if (jumptracker == 0)		//initial jump has not occured yet
 		{
-			pawn_track_y = pawn_pos_y - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_track_y][pawn_pos_x] == 0))													//includes check for empty space 
-				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] + pawn_type;
+			pawn_track_y = pawn_pos_y + 1;
+			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
+				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] + pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] <= 16))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
+			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] <= 16) && (locboard[pawn_track_x][pawn_track_y] != 0))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] + pawn_type;
 			pawn_track_x = pawn_pos_x - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] <= 16))
+			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] <= 16) && (locboard[pawn_track_x][pawn_track_y] != 0))
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] + pawn_type;
-			pawn_track_y = pawn_pos_y - 2;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_track_y][pawn_pos_x] == 0))
+			pawn_track_y = pawn_pos_y + 2;
+			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_pos_x][pawn_track_y] == 0))
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] + pawn_type;
 		}
-		else if (jumptracker = 1)
+		else if (jumptracker == 1)
 		{
-			pawn_track_y = pawn_pos_y - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_track_y][pawn_pos_x] == 0))													//includes check for empty space 
-				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] + pawn_type;
+			pawn_track_y = pawn_pos_y + 1;
+			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
+				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] + pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] <= 16))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
+			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] <= 16) && (locboard[pawn_track_x][pawn_track_y] != 0))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] + pawn_type;
 			pawn_track_x = pawn_pos_x - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] <= 16))
+			if ((pawn_track_y >= 0) && (pawn_track_y < 9) && (pawn_track_x >= 0) && (pawn_track_x < 9) && (locboard[pawn_track_x][pawn_track_y] <= 16) && (locboard[pawn_track_x][pawn_track_y] != 0))
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] + pawn_type;
-		}
-	}
-	for (i = 0; i < 8; i++)
-	{
-		for (j = 0; j < 8; j++)
-		{
-			if (j == 7)
-				printf("%x \n", checkboard_pawn[j][i]);
-			else
-				printf("%x ", checkboard_pawn[j][i]);
 		}
 	}
 }
 
-void checkboard_gen_rook(unsigned long ** locboard_temp, unsigned long ** checkboard_rook_temp, int rook_pos_x, int rook_pos_y, int what_rook)
+void checkboard_gen_rook(unsigned char locboard[8][8], unsigned char checkboard_rook[8][8], unsigned int rook_pos_x, unsigned int rook_pos_y, unsigned int what_rook)
 {
-	int fill_track_x, fill_track_y, rook_type, brk;
-	unsigned char checkboard_rook[8][8];
-	unsigned char locboard[8][8];
+	int rook_type, brk;
 	int i, j;
-	for (i = 0; i < 8; i++)				//y initialization
-	{
-		for (j = 0; j < 8; j++)			//x initialization
-		{
-			locboard[j][i] = 0x00;
-			checkboard_rook[j][i] = 0x00;
-		}
-	}
 	rook_type = 1;
 	brk = 0;
 	if (locboard[rook_pos_x][rook_pos_y] <= 16)			//white case
@@ -313,35 +262,14 @@ void checkboard_gen_rook(unsigned long ** locboard_temp, unsigned long ** checkb
 		}
 		brk = 0;
 	}
-	for (i = 0; i < 8; i++)
-	{
-		for (j = 0; j < 8; j++)
-		{
-			if (j == 7)
-				printf("%x \n", checkboard_rook[j][i]);
-			else
-				printf("%x ", checkboard_rook[j][i]);
-		}
-	}
 }
 
-void checkboard_gen_bishop(unsigned long ** locboard_temp, unsigned long ** checkboard_bishop_temp, int bishop_pos_x, int bishop_pos_y, int what_bishop)
+void checkboard_gen_bishop(unsigned char locboard[8][8], unsigned char checkboard_bishop[8][8], int bishop_pos_x, int bishop_pos_y, int what_bishop)
 {
-	int fill_track_x, fill_track_y, bishop_type, brk;
-	unsigned char checkboard_bishop[8][8];
-	unsigned char locboard[8][8];
+	int bishop_type, brk;
 	int i, j;
-	for (i = 0; i < 8; i++)				//y initialization
-	{
-		for (j = 0; j < 8; j++)			//x initialization
-		{
-			locboard[j][i] = 0x00;
-			checkboard_bishop[j][i] = 0x00;
-		}
-	}
 	bishop_type = 1;
 	brk = 0;
-	locboard[2][2] = 5;
 	if (locboard[bishop_pos_x][bishop_pos_y] <= 16)			//white case
 	{
 		for (i = 1; i < 8; i++)
@@ -395,7 +323,8 @@ void checkboard_gen_bishop(unsigned long ** locboard_temp, unsigned long ** chec
 			if ((locboard[bishop_pos_x + i][bishop_pos_y - i] == 0) && (brk != 1))
 				checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] = checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] + bishop_type;
 		}
-		
+		brk = 0;
+
 	}
 	else if (locboard[bishop_pos_x][bishop_pos_y] > 16)					//BLACK CASE
 	{
@@ -451,16 +380,6 @@ void checkboard_gen_bishop(unsigned long ** locboard_temp, unsigned long ** chec
 				checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] = checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] + bishop_type;
 		}
 	}
-	for (i = 0; i < 8; i++)
-	{
-		for (j = 0; j < 8; j++)
-		{
-			if (j == 7)
-				printf("%x \n", checkboard_bishop[j][i]);
-			else
-				printf("%x ", checkboard_bishop[j][i]);
-		}
-	}
 }
 
 int main()
@@ -477,13 +396,24 @@ int main()
 			checkboard[j][i] = 0x00;
 		}
 	}
-	printf("Checkboard for Pawn:\n");
-	checkboard_gen_pawn(locboard, checkboard, 0, 0, 0, 0);
-	printf("Checkboard for Knight:\n");
-	checkboard_gen_knight(locboard, checkboard, 4, 4, 0);
-	printf("Checkboard for Rook:\n");
-	checkboard_gen_rook(locboard, checkboard, 3, 3, 0);
-	printf("Checkboard for Bishop:\n");
-	checkboard_gen_bishop(locboard, checkboard, 3, 3, 0);
+
+//	printf("Checkboard for Pawn:\n");
+//	checkboard_gen_pawn(locboard, checkboard, 3, 7, 0, 0);
+//	printf("Checkboard for Knight:\n");
+//	checkboard_gen_knight(locboard, checkboard, 4, 4, 0);
+//	printf("Checkboard for Rook:\n");
+//	checkboard_gen_rook(locboard, checkboard, 0, 0, 0);
+//	printf("Checkboard for Bishop:\n");
+//	checkboard_gen_bishop(locboard, checkboard, 3, 3, 0);
+	for (i = 0; i < 8; i++)
+	{
+		for (j = 0; j < 8; j++)
+		{
+			if (j == 7)
+				printf("%x \n", checkboard[j][i]);
+			else
+				printf("%x ", checkboard[j][i]);
+		}
+	}
 	return 0;
 }
