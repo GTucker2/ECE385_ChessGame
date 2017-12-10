@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 
-void checkboard_gen_knight(unsigned int locboard[8][8], unsigned int checkboard_knight[8][8], unsigned int knight_pos_x, unsigned int knight_pos_y, int what_knight)
+void checkboard_gen_knight(unsigned int locboard[8][8], unsigned int checkboard_knight[8][8], int knight_pos_x, int knight_pos_y, int what_knight)
 {
 	int knight_track_x;															//local position tracker
 	int knight_track_y;
@@ -26,70 +26,85 @@ void checkboard_gen_knight(unsigned int locboard[8][8], unsigned int checkboard_
 	if (what_knight == 4)					//Black King Knight
 		knight_type = 0x00400000;
 	//	locboard[3][2] = 5;
-	if (locboard[knight_pos_x][knight_pos_y] <= 0x06)									//case for white piece
+	if (locboard[knight_pos_x][knight_pos_y] <= 0x10)									//case for white piece
 	{
 		knight_track_y = knight_pos_y - 2;												//first L 
 		knight_track_x = knight_pos_x - 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x06) || (locboard[knight_track_x][knight_track_y] == 0))) 					//checks whether position is on board
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x10) || (locboard[knight_track_x][knight_track_y] == 0))) 					//checks whether position is on board
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_x = knight_pos_x + 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_y = knight_pos_y + 2;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_x = knight_pos_x - 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_x = knight_pos_x - 2;
 		knight_track_y = knight_pos_y + 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_y = knight_pos_y - 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_x = knight_pos_x + 2;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_y = knight_pos_y + 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 	}
-	else if (locboard[knight_pos_x][knight_pos_y] > 0x06)								//case for black piece
+	else if (locboard[knight_pos_x][knight_pos_y] > 0x10)								//case for black piece
 	{
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x06) || (locboard[knight_track_x][knight_track_y] == 0))) 					//checks whether position is on board
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x10) || (locboard[knight_track_x][knight_track_y] == 0))) 					//checks whether position is on board
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_x = knight_pos_x + 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_y = knight_pos_y + 2;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_x = knight_pos_x - 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_x = knight_pos_x - 2;
 		knight_track_y = knight_pos_y + 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_y = knight_pos_y - 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_x = knight_pos_x + 2;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_y = knight_pos_y + 1;
-		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x06) || (locboard[knight_track_x][knight_track_y] == 0)))
+		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x10) || (locboard[knight_track_x][knight_track_y] == 0)))
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 	}
 }
 
-void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pawn[8][8], int pawn_pos_x, int pawn_pos_y, int what_pawn, int jumptracker)
+void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pawn[8][8], int pawn_pos_x, int pawn_pos_y, int what_pawn)
 {
-	unsigned long pawn_track_x;
-	unsigned long pawn_track_y;
+	int pawn_track_x;
+	int pawn_track_y;
+	int jumptracker;
 	unsigned int pawn_type;
 	int i, j;
+	if ((what_pawn > 0) && (what_pawn < 9))
+	{
+		if (pawn_pos_y == 6)
+			jumptracker = 0;
+		else
+			jumptracker = 1;
+	}
+	if ((what_pawn > 8) && (what_pawn < 17))
+	{
+		if (pawn_pos_y == 1)
+			jumptracker = 0;
+		else
+			jumptracker = 1;
+	}
 	if (what_pawn == 1)				//White Pawn 1
 		pawn_type = 0x100;
 	if (what_pawn == 2)				//White Pawn 2
@@ -122,7 +137,7 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 		pawn_type = 0x40000000;
 	if (what_pawn == 16)			//Black Pawn 8
 		pawn_type = 0x80000000;
-	if (locboard[pawn_pos_x][pawn_pos_y] <= 0x06)					//case for white piece
+	if (locboard[pawn_pos_x][pawn_pos_y] <= 0x10)					//case for white piece
 	{
 		if (jumptracker == 0)		//initial jump has not occured yet
 		{
@@ -130,10 +145,10 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x06))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x10))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x06))
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x10))
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] | pawn_type;
 			pawn_track_y = pawn_pos_y - 2;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))
@@ -145,14 +160,14 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x06))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x10))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x06))
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x10))
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] | pawn_type;
 		}
 	}
-	if (locboard[pawn_pos_x][pawn_pos_y] > 0x06)				//case for black piece
+	if (locboard[pawn_pos_x][pawn_pos_y] > 0x10)				//case for black piece
 	{
 		if (jumptracker == 0)		//initial jump has not occured yet
 		{
@@ -160,10 +175,10 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x06) && (locboard[pawn_track_x][pawn_track_y] != 0))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x10) && (locboard[pawn_track_x][pawn_track_y] != 0))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x06) && (locboard[pawn_track_x][pawn_track_y] != 0))
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x10) && (locboard[pawn_track_x][pawn_track_y] != 0))
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] | pawn_type;
 			pawn_track_y = pawn_pos_y + 2;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))
@@ -175,16 +190,16 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x06) && (locboard[pawn_track_x][pawn_track_y] != 0))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x10) && (locboard[pawn_track_x][pawn_track_y] != 0))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x06) && (locboard[pawn_track_x][pawn_track_y] != 0))
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x10) && (locboard[pawn_track_x][pawn_track_y] != 0))
 				checkboard_pawn[pawn_track_x][pawn_track_y] = checkboard_pawn[pawn_track_x][pawn_track_y] | pawn_type;
 		}
 	}
 }
 
-void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_rook[8][8], unsigned int rook_pos_x, unsigned int rook_pos_y, int what_rook)
+void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_rook[8][8], int rook_pos_x, int rook_pos_y, int what_rook)
 {
 	int brk;
 	unsigned int rook_type;
@@ -202,13 +217,13 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 	if (what_rook == 6)			//Black Queen
 		rook_type = 0x00080000;
 	brk = 0;
-	if (locboard[rook_pos_x][rook_pos_y] <= 0x06)			//white case
+	if (locboard[rook_pos_x][rook_pos_y] <= 0x10)			//white case
 	{
 		for (i = rook_pos_x + 1; i < 8; i++)
 		{
-			if ((locboard[i][rook_pos_y] <= 0x06) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
+			if ((locboard[i][rook_pos_y] <= 0x10) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[i][rook_pos_y] > 0x06) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
+			if ((locboard[i][rook_pos_y] > 0x10) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
 			{
 				checkboard_rook[i][rook_pos_y] = checkboard_rook[i][rook_pos_y] | rook_type;
 				brk = 1;
@@ -219,9 +234,9 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 		for (i = rook_pos_x - 1; i >= 0; i--)
 		{
-			if ((locboard[i][rook_pos_y] <= 0x06) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
+			if ((locboard[i][rook_pos_y] <= 0x10) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[i][rook_pos_y] > 0x06) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
+			if ((locboard[i][rook_pos_y] > 0x10) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
 			{
 				checkboard_rook[i][rook_pos_y] = checkboard_rook[i][rook_pos_y] | rook_type;
 				brk = 1;
@@ -232,9 +247,9 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 		for (i = rook_pos_y + 1; i < 8; i++)
 		{
-			if ((locboard[rook_pos_x][i] <= 0x06) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
+			if ((locboard[rook_pos_x][i] <= 0x10) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[rook_pos_x][i] > 0x06) && (brk != 1))
+			if ((locboard[rook_pos_x][i] > 0x10) && (brk != 1))
 			{
 				checkboard_rook[rook_pos_x][i] = checkboard_rook[rook_pos_x][i] | rook_type;
 				brk = 1;
@@ -245,9 +260,9 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 		for (i = rook_pos_y - 1; i >= 0; i--)
 		{
-			if ((locboard[rook_pos_x][i] <= 0x06) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
+			if ((locboard[rook_pos_x][i] <= 0x10) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[rook_pos_x][i] > 0x06) && (brk != 1))
+			if ((locboard[rook_pos_x][i] > 0x10) && (brk != 1))
 			{
 				checkboard_rook[rook_pos_x][i] = checkboard_rook[rook_pos_x][i] | rook_type;
 				brk = 1;
@@ -257,13 +272,13 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		}
 		brk = 0;
 	}
-	else if (locboard[rook_pos_x][rook_pos_y] > 0x06)		//black case
+	else if (locboard[rook_pos_x][rook_pos_y] > 0x10)		//black case
 	{
 		for (i = rook_pos_x + 1; i < 8; i++)
 		{
-			if ((locboard[i][rook_pos_y] > 0x06) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
+			if ((locboard[i][rook_pos_y] > 0x10) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[i][rook_pos_y] <= 0x06) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
+			if ((locboard[i][rook_pos_y] <= 0x10) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
 			{
 				checkboard_rook[i][rook_pos_y] = checkboard_rook[i][rook_pos_y] | rook_type;
 				brk = 1;
@@ -274,9 +289,9 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 		for (i = rook_pos_x - 1; i >= 0; i--)
 		{
-			if ((locboard[i][rook_pos_y] > 0x06) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
+			if ((locboard[i][rook_pos_y] > 0x10) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[i][rook_pos_y] <= 0x06) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
+			if ((locboard[i][rook_pos_y] <= 0x10) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
 			{
 				checkboard_rook[i][rook_pos_y] = checkboard_rook[i][rook_pos_y] | rook_type;
 				brk = 1;
@@ -287,9 +302,9 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 		for (i = rook_pos_y + 1; i < 8; i++)
 		{
-			if ((locboard[rook_pos_x][i] > 0x06) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
+			if ((locboard[rook_pos_x][i] > 0x10) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[rook_pos_x][i] <= 0x06) && (brk != 1))
+			if ((locboard[rook_pos_x][i] <= 0x10) && (brk != 1))
 			{
 				checkboard_rook[rook_pos_x][i] = checkboard_rook[rook_pos_x][i] | rook_type;
 				brk = 1;
@@ -300,9 +315,9 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 		for (i = rook_pos_y - 1; i >= 0; i--)
 		{
-			if ((locboard[rook_pos_x][i] > 0x06) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
+			if ((locboard[rook_pos_x][i] > 0x10) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[rook_pos_x][i] <= 0x06) && (brk != 1))
+			if ((locboard[rook_pos_x][i] <= 0x10) && (brk != 1))
 			{
 				checkboard_rook[rook_pos_x][i] = checkboard_rook[rook_pos_x][i] | rook_type;
 				brk = 1;
@@ -332,13 +347,13 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 	if (what_bishop == 6)			//Black Queen
 		bishop_type = 0x00080000;
 	brk = 0;
-	if (locboard[bishop_pos_x][bishop_pos_y] <= 0x06)			//white case
+	if (locboard[bishop_pos_x][bishop_pos_y] <= 0x10)			//white case
 	{
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x + i][bishop_pos_y + i] <= 0x06) && (locboard[bishop_pos_x + i][bishop_pos_y + i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y + i > 7))	//up and to right diagonal
+			if (((locboard[bishop_pos_x + i][bishop_pos_y + i] <= 0x10) && (locboard[bishop_pos_x + i][bishop_pos_y + i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y + i > 7))	//up and to right diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x + i][bishop_pos_y + i] > 0x06) && (brk != 1))
+			if ((locboard[bishop_pos_x + i][bishop_pos_y + i] > 0x10) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x + i][bishop_pos_y + i] = checkboard_bishop[bishop_pos_x + i][bishop_pos_y + i] | bishop_type;
 				brk = 1;
@@ -349,9 +364,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x - i][bishop_pos_y - i] <= 0x06) && (locboard[bishop_pos_x - i][bishop_pos_y - i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y - i < 0))	//down and left diagonal
+			if (((locboard[bishop_pos_x - i][bishop_pos_y - i] <= 0x10) && (locboard[bishop_pos_x - i][bishop_pos_y - i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y - i < 0))	//down and left diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x - i][bishop_pos_y - i] > 0x06) && (brk != 1))
+			if ((locboard[bishop_pos_x - i][bishop_pos_y - i] > 0x10) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x - i][bishop_pos_y - i] = checkboard_bishop[bishop_pos_x - i][bishop_pos_y - i] | bishop_type;
 				brk = 1;
@@ -362,9 +377,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x - i][bishop_pos_y + i] <= 0x06) && (locboard[bishop_pos_x - i][bishop_pos_y + i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y + i > 7))		//up and left diagonal
+			if (((locboard[bishop_pos_x - i][bishop_pos_y + i] <= 0x10) && (locboard[bishop_pos_x - i][bishop_pos_y + i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y + i > 7))		//up and left diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x - i][bishop_pos_y + i] > 0x06) && (brk != 1))
+			if ((locboard[bishop_pos_x - i][bishop_pos_y + i] > 0x10) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x - i][bishop_pos_y + i] = checkboard_bishop[bishop_pos_x - i][bishop_pos_y + i] | bishop_type;
 				brk = 1;
@@ -375,9 +390,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x + i][bishop_pos_y - i] <= 0x06) && (locboard[bishop_pos_x + i][bishop_pos_y - i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y - i < 0))		//down and right diagonal
+			if (((locboard[bishop_pos_x + i][bishop_pos_y - i] <= 0x10) && (locboard[bishop_pos_x + i][bishop_pos_y - i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y - i < 0))		//down and right diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x + i][bishop_pos_y - i] > 0x06) && (brk != 1))
+			if ((locboard[bishop_pos_x + i][bishop_pos_y - i] > 0x10) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] = checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] | bishop_type;
 				brk = 1;
@@ -388,13 +403,13 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 
 	}
-	else if (locboard[bishop_pos_x][bishop_pos_y] > 0x06)					//BLACK CASE
+	else if (locboard[bishop_pos_x][bishop_pos_y] > 0x10)					//BLACK CASE
 	{
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x + i][bishop_pos_y + i] > 0x06) && (locboard[bishop_pos_x + i][bishop_pos_y + i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y + i > 7))	//up and to right diagonal
+			if (((locboard[bishop_pos_x + i][bishop_pos_y + i] > 0x10) && (locboard[bishop_pos_x + i][bishop_pos_y + i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y + i > 7))	//up and to right diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x + i][bishop_pos_y + i] <= 0x06) && (brk != 1))
+			if ((locboard[bishop_pos_x + i][bishop_pos_y + i] <= 0x10) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x + i][bishop_pos_y + i] = checkboard_bishop[bishop_pos_x + i][bishop_pos_y + i] | bishop_type;
 				brk = 1;
@@ -405,9 +420,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x - i][bishop_pos_y - i] > 0x06) && (locboard[bishop_pos_x - i][bishop_pos_y - i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y - i < 0))	//down and left diagonal
+			if (((locboard[bishop_pos_x - i][bishop_pos_y - i] > 0x10) && (locboard[bishop_pos_x - i][bishop_pos_y - i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y - i < 0))	//down and left diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x - i][bishop_pos_y - i] <= 0x06) && (brk != 1))
+			if ((locboard[bishop_pos_x - i][bishop_pos_y - i] <= 0x10) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x - i][bishop_pos_y - i] = checkboard_bishop[bishop_pos_x - i][bishop_pos_y - i] | bishop_type;
 				brk = 1;
@@ -418,9 +433,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x - i][bishop_pos_y + i] > 0x06) && (locboard[bishop_pos_x - i][bishop_pos_y + i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y + i > 7))		//up and left diagonal
+			if (((locboard[bishop_pos_x - i][bishop_pos_y + i] > 0x10) && (locboard[bishop_pos_x - i][bishop_pos_y + i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y + i > 7))		//up and left diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x - i][bishop_pos_y + i] <= 0x06) && (brk != 1))
+			if ((locboard[bishop_pos_x - i][bishop_pos_y + i] <= 0x10) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x - i][bishop_pos_y + i] = checkboard_bishop[bishop_pos_x - i][bishop_pos_y + i] | bishop_type;
 				brk = 1;
@@ -431,9 +446,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x + i][bishop_pos_y - i] > 0x06) && (locboard[bishop_pos_x + i][bishop_pos_y - i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y - i < 0))		//down and right diagonal
+			if (((locboard[bishop_pos_x + i][bishop_pos_y - i] > 0x10) && (locboard[bishop_pos_x + i][bishop_pos_y - i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y - i < 0))		//down and right diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x + i][bishop_pos_y - i] <= 0x06) && (brk != 1))
+			if ((locboard[bishop_pos_x + i][bishop_pos_y - i] <= 0x10) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] = checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] | bishop_type;
 				brk = 1;
@@ -460,40 +475,40 @@ void checkboard_gen_king(unsigned int locboard[8][8], unsigned int checkboard_ki
 		king_type = 0x00100000;
 	if (locboard[king_pos_x][king_pos_y] == 0x05)
 	{
-		if ((king_pos_y != 7) && (checkboard_king[king_pos_x][king_pos_y + 1] < 0x00010000) && ((locboard[king_pos_x][king_pos_y + 1] > 0x06) || (locboard[king_pos_x][king_pos_y + 1] == 0)))
+		if ((king_pos_y != 7) && (checkboard_king[king_pos_x][king_pos_y + 1] < 0x00010000) && ((locboard[king_pos_x][king_pos_y + 1] > 0x10) || (locboard[king_pos_x][king_pos_y + 1] == 0)))
 			checkboard_king[king_pos_x][king_pos_y + 1] = checkboard_king[king_pos_x][king_pos_y + 1] | king_type;
-		if ((king_pos_y != 0) && (checkboard_king[king_pos_x][king_pos_y - 1] < 0x00010000) && ((locboard[king_pos_x][king_pos_y - 1] > 0x06) || (locboard[king_pos_x][king_pos_y - 1] == 0)))
+		if ((king_pos_y != 0) && (checkboard_king[king_pos_x][king_pos_y - 1] < 0x00010000) && ((locboard[king_pos_x][king_pos_y - 1] > 0x10) || (locboard[king_pos_x][king_pos_y - 1] == 0)))
 			checkboard_king[king_pos_x][king_pos_y - 1] = checkboard_king[king_pos_x][king_pos_y - 1] | king_type;
-		if ((king_pos_x != 7) && (checkboard_king[king_pos_x + 1][king_pos_y] < 0x00010000) && ((locboard[king_pos_x + 1][king_pos_y] > 0x06) || (locboard[king_pos_x + 1][king_pos_y] == 0)))
+		if ((king_pos_x != 7) && (checkboard_king[king_pos_x + 1][king_pos_y] < 0x00010000) && ((locboard[king_pos_x + 1][king_pos_y] > 0x10) || (locboard[king_pos_x + 1][king_pos_y] == 0)))
 			checkboard_king[king_pos_x + 1][king_pos_y] = checkboard_king[king_pos_x + 1][king_pos_y] | king_type;
-		if ((king_pos_x != 0) && (checkboard_king[king_pos_x - 1][king_pos_y] < 0x00010000) && ((locboard[king_pos_x - 1][king_pos_y] > 0x06) || (locboard[king_pos_x - 1][king_pos_y] == 0)))
+		if ((king_pos_x != 0) && (checkboard_king[king_pos_x - 1][king_pos_y] < 0x00010000) && ((locboard[king_pos_x - 1][king_pos_y] > 0x10) || (locboard[king_pos_x - 1][king_pos_y] == 0)))
 			checkboard_king[king_pos_x - 1][king_pos_y] = checkboard_king[king_pos_x - 1][king_pos_y] | king_type;
-		if ((king_pos_x != 7) && (king_pos_y != 7) && (checkboard_king[king_pos_x + 1][king_pos_y + 1] < 0x00010000) && ((locboard[king_pos_x + 1][king_pos_y + 1] > 0x06) || (locboard[king_pos_x + 1][king_pos_y + 1] == 0)))
+		if ((king_pos_x != 7) && (king_pos_y != 7) && (checkboard_king[king_pos_x + 1][king_pos_y + 1] < 0x00010000) && ((locboard[king_pos_x + 1][king_pos_y + 1] > 0x10) || (locboard[king_pos_x + 1][king_pos_y + 1] == 0)))
 			checkboard_king[king_pos_x + 1][king_pos_y + 1] = checkboard_king[king_pos_x + 1][king_pos_y + 1] | king_type;
-		if ((king_pos_x != 7) && (king_pos_y != 0) && (checkboard_king[king_pos_x + 1][king_pos_y - 1] < 0x00010000) && ((locboard[king_pos_x + 1][king_pos_y - 1] > 0x06) || (locboard[king_pos_x + 1][king_pos_y - 1] == 0)))
+		if ((king_pos_x != 7) && (king_pos_y != 0) && (checkboard_king[king_pos_x + 1][king_pos_y - 1] < 0x00010000) && ((locboard[king_pos_x + 1][king_pos_y - 1] > 0x10) || (locboard[king_pos_x + 1][king_pos_y - 1] == 0)))
 			checkboard_king[king_pos_x + 1][king_pos_y - 1] = checkboard_king[king_pos_x + 1][king_pos_y - 1] | king_type;
-		if ((king_pos_x != 0) && (king_pos_y != 7) && (checkboard_king[king_pos_x - 1][king_pos_y + 1] < 0x00010000) && ((locboard[king_pos_x - 1][king_pos_y + 1] > 0x06) || (locboard[king_pos_x - 1][king_pos_y + 1] == 0)))
+		if ((king_pos_x != 0) && (king_pos_y != 7) && (checkboard_king[king_pos_x - 1][king_pos_y + 1] < 0x00010000) && ((locboard[king_pos_x - 1][king_pos_y + 1] > 0x10) || (locboard[king_pos_x - 1][king_pos_y + 1] == 0)))
 			checkboard_king[king_pos_x - 1][king_pos_y + 1] = checkboard_king[king_pos_x - 1][king_pos_y + 1] | king_type;
-		if ((king_pos_x != 0) && (king_pos_y != 0) && (checkboard_king[king_pos_x - 1][king_pos_y - 1] < 0x00010000) && ((locboard[king_pos_x - 1][king_pos_y - 1] > 0x06) || (locboard[king_pos_x - 1][king_pos_y - 1] == 0)))
+		if ((king_pos_x != 0) && (king_pos_y != 0) && (checkboard_king[king_pos_x - 1][king_pos_y - 1] < 0x00010000) && ((locboard[king_pos_x - 1][king_pos_y - 1] > 0x10) || (locboard[king_pos_x - 1][king_pos_y - 1] == 0)))
 			checkboard_king[king_pos_x - 1][king_pos_y - 1] = checkboard_king[king_pos_x - 1][king_pos_y - 1] | king_type;
 	}
 	if (locboard[king_pos_x][king_pos_y] == 0x0B)
 	{
-		if ((king_pos_y != 7) && ((checkboard_king[king_pos_x][king_pos_y + 1] >= 0x00010000) || (checkboard_king[king_pos_x][king_pos_y + 1] == 0)) && ((locboard[king_pos_x][king_pos_y + 1] <= 0x06) || (locboard[king_pos_x][king_pos_y + 1] == 0)))
+		if ((king_pos_y != 7) && ((checkboard_king[king_pos_x][king_pos_y + 1] >= 0x00010000) || (checkboard_king[king_pos_x][king_pos_y + 1] == 0)) && ((locboard[king_pos_x][king_pos_y + 1] <= 0x10) || (locboard[king_pos_x][king_pos_y + 1] == 0)))
 			checkboard_king[king_pos_x][king_pos_y + 1] = checkboard_king[king_pos_x][king_pos_y + 1] | king_type;
-		if ((king_pos_y != 0) && ((checkboard_king[king_pos_x][king_pos_y - 1] >= 0x00010000) || (checkboard_king[king_pos_x][king_pos_y - 1] == 0)) && ((locboard[king_pos_x][king_pos_y - 1] <= 0x06) || (locboard[king_pos_x][king_pos_y - 1] == 0)))
+		if ((king_pos_y != 0) && ((checkboard_king[king_pos_x][king_pos_y - 1] >= 0x00010000) || (checkboard_king[king_pos_x][king_pos_y - 1] == 0)) && ((locboard[king_pos_x][king_pos_y - 1] <= 0x10) || (locboard[king_pos_x][king_pos_y - 1] == 0)))
 			checkboard_king[king_pos_x][king_pos_y - 1] = checkboard_king[king_pos_x][king_pos_y - 1] | king_type;
-		if ((king_pos_x != 7) && ((checkboard_king[king_pos_x + 1][king_pos_y] >= 0x00010000) || (checkboard_king[king_pos_x + 1][king_pos_y] == 0)) && ((locboard[king_pos_x + 1][king_pos_y] <= 0x06) || (locboard[king_pos_x + 1][king_pos_y] == 0)))
+		if ((king_pos_x != 7) && ((checkboard_king[king_pos_x + 1][king_pos_y] >= 0x00010000) || (checkboard_king[king_pos_x + 1][king_pos_y] == 0)) && ((locboard[king_pos_x + 1][king_pos_y] <= 0x10) || (locboard[king_pos_x + 1][king_pos_y] == 0)))
 			checkboard_king[king_pos_x + 1][king_pos_y] = checkboard_king[king_pos_x + 1][king_pos_y] | king_type;
-		if ((king_pos_x != 0) && ((checkboard_king[king_pos_x - 1][king_pos_y] >= 0x00010000) || (checkboard_king[king_pos_x - 1][king_pos_y] == 0)) && ((locboard[king_pos_x - 1][king_pos_y] <= 0x06) || (locboard[king_pos_x - 1][king_pos_y] == 0)))
+		if ((king_pos_x != 0) && ((checkboard_king[king_pos_x - 1][king_pos_y] >= 0x00010000) || (checkboard_king[king_pos_x - 1][king_pos_y] == 0)) && ((locboard[king_pos_x - 1][king_pos_y] <= 0x10) || (locboard[king_pos_x - 1][king_pos_y] == 0)))
 			checkboard_king[king_pos_x - 1][king_pos_y] = checkboard_king[king_pos_x - 1][king_pos_y] | king_type;
-		if ((king_pos_x != 7) && (king_pos_y != 7) && ((checkboard_king[king_pos_x + 1][king_pos_y + 1] >= 0x00010000) || (checkboard_king[king_pos_x + 1][king_pos_y + 1] == 0)) && ((locboard[king_pos_x + 1][king_pos_y + 1] <= 0x06) || (locboard[king_pos_x + 1][king_pos_y + 1] == 0)))
+		if ((king_pos_x != 7) && (king_pos_y != 7) && ((checkboard_king[king_pos_x + 1][king_pos_y + 1] >= 0x00010000) || (checkboard_king[king_pos_x + 1][king_pos_y + 1] == 0)) && ((locboard[king_pos_x + 1][king_pos_y + 1] <= 0x10) || (locboard[king_pos_x + 1][king_pos_y + 1] == 0)))
 			checkboard_king[king_pos_x + 1][king_pos_y + 1] = checkboard_king[king_pos_x + 1][king_pos_y + 1] | king_type;
-		if ((king_pos_x != 7) && (king_pos_y != 0) && ((checkboard_king[king_pos_x + 1][king_pos_y - 1] >= 0x00010000) || (checkboard_king[king_pos_x + 1][king_pos_y - 1] == 0)) && ((locboard[king_pos_x + 1][king_pos_y - 1] <= 0x06) || (locboard[king_pos_x + 1][king_pos_y - 1] == 0)))
+		if ((king_pos_x != 7) && (king_pos_y != 0) && ((checkboard_king[king_pos_x + 1][king_pos_y - 1] >= 0x00010000) || (checkboard_king[king_pos_x + 1][king_pos_y - 1] == 0)) && ((locboard[king_pos_x + 1][king_pos_y - 1] <= 0x10) || (locboard[king_pos_x + 1][king_pos_y - 1] == 0)))
 			checkboard_king[king_pos_x + 1][king_pos_y - 1] = checkboard_king[king_pos_x + 1][king_pos_y - 1] | king_type;
-		if ((king_pos_x != 0) && (king_pos_y != 7) && ((checkboard_king[king_pos_x - 1][king_pos_y + 1] >= 0x00010000) || (checkboard_king[king_pos_x - 1][king_pos_y + 1] == 0)) && ((locboard[king_pos_x - 1][king_pos_y + 1] <= 0x06) || (locboard[king_pos_x - 1][king_pos_y + 1] == 0)))
+		if ((king_pos_x != 0) && (king_pos_y != 7) && ((checkboard_king[king_pos_x - 1][king_pos_y + 1] >= 0x00010000) || (checkboard_king[king_pos_x - 1][king_pos_y + 1] == 0)) && ((locboard[king_pos_x - 1][king_pos_y + 1] <= 0x10) || (locboard[king_pos_x - 1][king_pos_y + 1] == 0)))
 			checkboard_king[king_pos_x - 1][king_pos_y + 1] = checkboard_king[king_pos_x - 1][king_pos_y + 1] | king_type;
-		if ((king_pos_x != 0) && (king_pos_y != 0) && ((checkboard_king[king_pos_x - 1][king_pos_y - 1] >= 0x00010000) || (checkboard_king[king_pos_x - 1][king_pos_y - 1] == 0)) && ((locboard[king_pos_x - 1][king_pos_y - 1] <= 0x06) || (locboard[king_pos_x - 1][king_pos_y - 1] == 0)))
+		if ((king_pos_x != 0) && (king_pos_y != 0) && ((checkboard_king[king_pos_x - 1][king_pos_y - 1] >= 0x00010000) || (checkboard_king[king_pos_x - 1][king_pos_y - 1] == 0)) && ((locboard[king_pos_x - 1][king_pos_y - 1] <= 0x10) || (locboard[king_pos_x - 1][king_pos_y - 1] == 0)))
 			checkboard_king[king_pos_x - 1][king_pos_y - 1] = checkboard_king[king_pos_x - 1][king_pos_y - 1] | king_type;
 	}
 }
@@ -631,12 +646,150 @@ int move_check_king(unsigned int locboard[8][8], unsigned int checkboard[8][8], 
 		return 0;
 }
 
+int select_piece(unsigned int locboard[8][8], int x_pos, int y_pos)
+{
+	int piece;
+	if (locboard[x_pos][y_pos] == 0x01)
+		piece = 1;
+	if (locboard[x_pos][y_pos] == 0x02)
+		piece = 1;
+	if (locboard[x_pos][y_pos] == 0x03)
+		piece = 1;
+	if (locboard[x_pos][y_pos] == 0x04)
+		piece = 5;
+	if (locboard[x_pos][y_pos] == 0x06)
+		piece = 2;
+	if (locboard[x_pos][y_pos] == 0x07)
+		piece = 2;
+	if (locboard[x_pos][y_pos] == 0x08)
+		piece = 2;
+	if (locboard[x_pos][y_pos] == 0x09)
+		piece = 1;
+	if (locboard[x_pos][y_pos] == 0x0A)
+		piece = 2;
+	if (locboard[x_pos][y_pos] == 0x0B)
+		piece = 3;
+	if (locboard[x_pos][y_pos] == 0x0C)
+		piece = 4;
+	if (locboard[x_pos][y_pos] == 0x0D)
+		piece = 5;
+	if (locboard[x_pos][y_pos] == 0x0E)
+		piece = 6;
+	if (locboard[x_pos][y_pos] == 0x0F)
+		piece = 7;
+	if (locboard[x_pos][y_pos] == 0x10)
+		piece = 8;
+	if (locboard[x_pos][y_pos] == 0x11)
+		piece = 3;
+	if (locboard[x_pos][y_pos] == 0x12)
+		piece = 3;
+	if (locboard[x_pos][y_pos] == 0x13)
+		piece = 3;
+	if (locboard[x_pos][y_pos] == 0x14)
+		piece = 6;
+	if (locboard[x_pos][y_pos] == 0x16)
+		piece = 4;
+	if (locboard[x_pos][y_pos] == 0x17)
+		piece = 4;
+	if (locboard[x_pos][y_pos] == 0x18)
+		piece = 4;
+	if (locboard[x_pos][y_pos] == 0x19)
+		piece = 9;
+	if (locboard[x_pos][y_pos] == 0x1A)
+		piece = 10;
+	if (locboard[x_pos][y_pos] == 0x1B)
+		piece = 11;
+	if (locboard[x_pos][y_pos] == 0x1C)
+		piece = 12;
+	if (locboard[x_pos][y_pos] == 0x1D)
+		piece = 13;
+	if (locboard[x_pos][y_pos] == 0x1E)
+		piece = 14;
+	if (locboard[x_pos][y_pos] == 0x1F)
+		piece = 15;
+	if (locboard[x_pos][y_pos] == 0x20)
+		piece = 16;
+	return piece;
+
+}
+
 int main()
 {
 	unsigned int locboard[8][8];		//actual game board
 	unsigned int checkboard[8][8];		//parallel generated board with hot encoded valid moves
-	unsigned char piece_tracker[32];	//tracks positions of each individual piece  
+	int init_x, init_y, checkmate, check, turn;
+	int move_x, move_y, what_piece, valid;
+	int WQR_X, WQR_Y, WQK_X, WQK_Y, WQB_X, WQB_Y, WQ_X, WQ_Y, WK_X, WK_Y, WKB_X, WKB_Y, WKK_X, WKK_Y, WKR_X, WKR_Y, WP1_X, WP1_Y, WP2_X, WP2_Y;
+	int WP3_X, WP3_Y, WP4_X, WP4_Y, WP5_X, WP5_Y, WP6_X, WP6_Y, WP7_X, WP7_Y, WP8_X, WP8_Y;
+	int BQR_X, BQR_Y, BQK_X, BQK_Y, BQB_X, BQB_Y, BQ_X, BQ_Y, BK_X, BK_Y, BKB_X, BKB_Y, BKK_X, BKK_Y, BKR_X, BKR_Y, BP1_X, BP1_Y, BP2_X, BP2_Y;
+	int BP3_X, BP3_Y, BP4_X, BP4_Y, BP5_X, BP5_Y, BP6_X, BP6_Y, BP7_X, BP7_Y, BP8_X, BP8_Y;
+	WQR_X = 0;									//I didn't know what else to do so BRUTE FORCE IT IS
+	WQR_Y = 7;									//keeps track of individual piece positions for the repeated checkboard gen functions
+	WQK_X = 1;
+	WQK_Y = 7;
+	WQB_X = 2;
+	WQB_Y = 7;
+	WQ_X = 3;
+	WQ_Y = 7;
+	WK_X = 4;
+	WK_Y = 7;
+	WKB_X = 5;
+	WKB_Y = 7;
+	WKK_X = 6;
+	WKK_Y = 7;
+	WKR_X = 7;
+	WKR_Y = 7;
+	WP1_X = 0;
+	WP1_Y = 6;
+	WP2_X = 1;
+	WP2_Y = 6; 
+	WP3_X = 2;
+	WP3_Y = 6;
+	WP4_X = 3;
+	WP4_Y = 6; 
+	WP5_X = 4;
+	WP5_Y = 6;
+	WP6_X = 5;
+	WP6_Y = 6;
+	WP7_X = 6;
+	WP7_Y = 6;
+	WP8_X = 7;
+	WP8_Y = 6; 
+	BQR_X = 0;
+	BQR_Y = 0;
+	BQK_X = 1;
+	BQK_Y = 0;
+	BQB_X = 2;
+	BQB_Y = 0;
+	BQ_X = 3;
+	BQ_Y = 0;
+	BK_X = 4;
+	BK_Y = 0;
+	BKB_X = 5;
+	BKB_Y = 0;
+	BKK_X = 6; 
+	BKK_Y = 0;
+	BKR_X = 7;
+	BKR_Y = 0; 
+	BP1_X = 0;
+	BP1_Y = 1;
+	BP2_X = 1;
+	BP2_Y = 1;
+	BP3_X = 2;
+	BP3_Y = 1;
+	BP4_X = 3;
+	BP4_Y = 1;
+	BP5_X = 4;
+	BP5_Y = 1;
+	BP6_X = 5; 
+	BP6_Y = 1;
+	BP7_X = 6; 
+	BP7_Y = 1; 
+	BP8_X = 7;
+	BP8_Y = 1;
 	int i, j;
+	checkmate = 0;
+	turn = 0;							//white goes first
 	for (i = 0; i < 8; i++)				//y initialization
 	{
 		for (j = 0; j < 8; j++)			//x initialization
@@ -645,38 +798,38 @@ int main()
 			checkboard[j][i] = 0x00;
 		}
 	}
-	locboard[0][0] = 0x07;
-	locboard[1][0] = 0x08;
-	locboard[2][0] = 0x09;
-	locboard[3][0] = 0x0A;
-	locboard[4][0] = 0x0B;
-	locboard[5][0] = 0x09;
-	locboard[6][0] = 0x08;
-	locboard[7][0] = 0x07;
-	locboard[0][1] = 0x0C;
-	locboard[1][1] = 0x0C;
-	locboard[2][1] = 0x0C;
-	locboard[3][1] = 0x0C;
-	locboard[4][1] = 0x0C;
-	locboard[5][1] = 0x0C;
-	locboard[6][1] = 0x0C;
-	locboard[7][1] = 0x0C;
-	locboard[0][6] = 0x06;
-	locboard[1][6] = 0x06;
-	locboard[2][6] = 0x06;
-	locboard[3][6] = 0x06;
-	locboard[4][6] = 0x06;
-	locboard[5][6] = 0x06;
-	locboard[6][6] = 0x06;
-	locboard[7][6] = 0x06;
+	locboard[0][0] = 0x11;			//locboard initialization 
+	locboard[1][0] = 0x12;
+	locboard[2][0] = 0x13;
+	locboard[3][0] = 0x14;
+	locboard[4][0] = 0x15;
+	locboard[5][0] = 0x16;
+	locboard[6][0] = 0x17;
+	locboard[7][0] = 0x18;
+	locboard[0][1] = 0x19;
+	locboard[1][1] = 0x1A;
+	locboard[2][1] = 0x1B;
+	locboard[3][1] = 0x1C;
+	locboard[4][1] = 0x1D;
+	locboard[5][1] = 0x1E;
+	locboard[6][1] = 0x1F;
+	locboard[7][1] = 0x20;
+	locboard[0][6] = 0x09;
+	locboard[1][6] = 0x0A;
+	locboard[2][6] = 0x0B;
+	locboard[3][6] = 0x0C;
+	locboard[4][6] = 0x0D;
+	locboard[5][6] = 0x0E;
+	locboard[6][6] = 0x0F;
+	locboard[7][6] = 0x10;
 	locboard[0][7] = 0x01;
 	locboard[1][7] = 0x02;
 	locboard[2][7] = 0x03;
 	locboard[3][7] = 0x04;
 	locboard[4][7] = 0x05;
-	locboard[5][7] = 0x03;
-	locboard[6][7] = 0x02;
-	locboard[7][7] = 0x01;
+	locboard[5][7] = 0x06;
+	locboard[6][7] = 0x07;
+	locboard[7][7] = 0x08;
 
 	for (i = 0; i < 8; i++)
 	{
@@ -688,42 +841,39 @@ int main()
 				printf("%02x ", locboard[j][i]);
 		}
 	}
-	printf("\n");
-	printf("Checkboard:\n");
-	checkboard_gen_pawn(locboard, checkboard, 0, 6, 1, 0);
-	checkboard_gen_pawn(locboard, checkboard, 1, 6, 2, 0);
-	checkboard_gen_pawn(locboard, checkboard, 2, 6, 3, 0);
-	checkboard_gen_pawn(locboard, checkboard, 3, 6, 4, 0);
-	checkboard_gen_pawn(locboard, checkboard, 4, 6, 5, 0);
-	checkboard_gen_pawn(locboard, checkboard, 5, 6, 6, 0);
-	checkboard_gen_pawn(locboard, checkboard, 6, 6, 7, 0);
-	checkboard_gen_pawn(locboard, checkboard, 7, 6, 8, 0);
-	checkboard_gen_knight(locboard, checkboard, 1, 7, 1);
-	checkboard_gen_knight(locboard, checkboard, 6, 7, 2);
-	checkboard_gen_rook(locboard, checkboard, 0, 7, 1);
-	checkboard_gen_rook(locboard, checkboard, 7, 7, 2);
-	checkboard_gen_bishop(locboard, checkboard, 2, 7, 1);
-	checkboard_gen_bishop(locboard, checkboard, 5, 7, 2);
-	checkboard_gen_king(locboard, checkboard, 4, 7);
-	checkboard_gen_queen(locboard, checkboard, 3, 7, 5);
+	checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+	checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+	checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+	checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+	checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+	checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+	checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_X, 7);
+	checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_X, 8);
+	checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+	checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+	checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+	checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+	checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+	checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+	checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+	checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
 
-	checkboard_gen_pawn(locboard, checkboard, 0, 1, 9, 0);
-	checkboard_gen_pawn(locboard, checkboard, 1, 1, 10, 0);
-	checkboard_gen_pawn(locboard, checkboard, 2, 1, 11, 0);
-	checkboard_gen_pawn(locboard, checkboard, 3, 1, 12, 0);
-	checkboard_gen_pawn(locboard, checkboard, 4, 1, 13, 0);
-	checkboard_gen_pawn(locboard, checkboard, 5, 1, 14, 0);
-	checkboard_gen_pawn(locboard, checkboard, 6, 1, 15, 0);
-	checkboard_gen_pawn(locboard, checkboard, 7, 1, 16, 0);
-	checkboard_gen_knight(locboard, checkboard, 1, 0, 3);
-	checkboard_gen_knight(locboard, checkboard, 6, 0, 4);
-	checkboard_gen_rook(locboard, checkboard, 0, 0, 3);
-	checkboard_gen_rook(locboard, checkboard, 7, 0, 4);
-	checkboard_gen_bishop(locboard, checkboard, 2, 0, 3);
-	checkboard_gen_bishop(locboard, checkboard, 5, 0, 4);
-	checkboard_gen_king(locboard, checkboard, 4, 0);
-	checkboard_gen_queen(locboard, checkboard, 3, 0, 6);
-
+	checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+	checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+	checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+	checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+	checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+	checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+	checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+	checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+	checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+	checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+	checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+	checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+	checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+	checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+	checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+	checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
 	for (i = 0; i < 8; i++)
 	{
 		for (j = 0; j < 8; j++)
@@ -734,9 +884,144 @@ int main()
 				printf("%08x ", checkboard[j][i]);
 		}
 	}
-	if (move_check_queen(checkboard, 3, 2, 5))
-		printf("valid move\n");
-	else
-		printf("invalid move\n"); 
+	if (turn == 0)
+	{
+		printf("Select Piece\n");
+		scanf("%d %d %d %d", &init_x, &init_y, &move_x, &move_y);
+		what_piece = select_piece(locboard, init_x, init_y);
+		if ((locboard[init_x][init_y] > 0x08) && (locboard[init_x][init_y] < 0x11))			//white pawn
+		{
+			valid = move_check_pawn(checkboard, move_x, move_y, what_piece);
+			if (valid == 1)
+			{
+				if (locboard[init_x][init_y] == 0x09)
+				{
+					WP1_X = move_x;
+					WP1_Y = move_y; 
+				}
+				if (locboard[init_x][init_y] == 0x0A)
+				{
+					WP2_X = move_x;
+					WP2_Y = move_y;
+				}
+				if (locboard[init_x][init_y] == 0x0B)
+				{
+					WP3_X = move_x;
+					WP3_Y = move_y;
+				}
+				if (locboard[init_x][init_y] == 0x0C)
+				{
+					WP4_X = move_x;
+					WP4_Y = move_y;
+				}
+				if (locboard[init_x][init_y] == 0x0D)
+				{
+					WP5_X = move_x;
+					WP5_Y = move_y;
+				}
+				if (locboard[init_x][init_y] == 0x0E)
+				{
+					WP6_X = move_x;
+					WP6_Y = move_y;
+				}
+				if (locboard[init_x][init_y] == 0x0F)
+				{
+					WP7_X = move_x;
+					WP7_Y = move_y;
+				}
+				if (locboard[init_x][init_y] == 0x10)
+				{
+					WP8_X = move_x;
+					WP8_Y = move_y;
+				}
+				locboard[move_x][move_y] = locboard[init_x][init_y];
+				locboard[init_x][init_y] = 0x00;
+				turn = 1;
+				for (i = 0; i < 8; i++)				//y initialization
+				{
+					for (j = 0; j < 8; j++)			//x initialization
+					{
+						checkboard[j][i] = 0x00;
+					}
+				}
+				checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+				checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+				checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+				checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+				checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+				checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+				checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_X, 7);
+				checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_X, 8);
+				checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+				checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+				checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+				checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+				checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+				checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+				checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+				checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+				checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+				checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+				checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+				checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+				checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+				checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+				checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+				checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+				checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+				checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+				checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+				checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+				checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+				checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+				checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+				checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+				for (i = 0; i < 8; i++)
+				{
+					for (j = 0; j < 8; j++)
+					{
+						if (j == 7)
+							printf("%02x \n", locboard[j][i]);
+						else
+							printf("%02x ", locboard[j][i]);
+					}
+				}
+				printf("\n");
+				for (i = 0; i < 8; i++)
+				{
+					for (j = 0; j < 8; j++)
+					{
+						if (j == 7)
+							printf("%08x \n", checkboard[j][i]);
+						else
+							printf("%08x ", checkboard[j][i]);
+					}
+				}
+
+				
+			}
+		}
+		if ((locboard[init_x][init_y] == 0x02) || (locboard[init_x][init_y] == 0x07))		//white knight
+		{
+			valid = move_check_knight(checkboard, move_x, move_y, what_piece);
+			if (valid == 1)
+			{
+				locboard[move_x][move_y] = locboard[init_x][init_y];
+				locboard[init_x][init_y] = 0x00;
+				turn = 1;
+			}
+		}
+		if ((locboard[init_x][init_y] == 0x02) || (locboard[init_x][init_y] == 0x07))		//white rook
+		{
+			valid = move_check_knight(checkboard, move_x, move_y, what_piece);
+			if (valid == 1)
+			{
+				locboard[move_x][move_y] = locboard[init_x][init_y];
+				locboard[init_x][init_y] = 0x00;
+				turn = 1;
+			}
+		}
+	}
 	return 0;
 }
