@@ -847,8 +847,8 @@ int main()
 	checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
 	checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
 	checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
-	checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_X, 7);
-	checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_X, 8);
+	checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_Y, 7);
+	checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_Y, 8);
 	checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
 	checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
 	checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
@@ -874,152 +874,859 @@ int main()
 	checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
 	checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
 	checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
-	for (i = 0; i < 8; i++)
+	while (1 < 2)
 	{
-		for (j = 0; j < 8; j++)
+		if (turn == 0)
 		{
-			if (j == 7)
-				printf("%08x \n", checkboard[j][i]);
-			else
-				printf("%08x ", checkboard[j][i]);
-		}
-	}
-	if (turn == 0)
-	{
-		printf("Select Piece\n");
-		scanf("%d %d %d %d", &init_x, &init_y, &move_x, &move_y);
-		what_piece = select_piece(locboard, init_x, init_y);
-		if ((locboard[init_x][init_y] > 0x08) && (locboard[init_x][init_y] < 0x11))			//white pawn
-		{
-			valid = move_check_pawn(checkboard, move_x, move_y, what_piece);
-			if (valid == 1)
+			printf("White Turn: Select Piece and Destination\n");
+			scanf("%d %d %d %d", &init_x, &init_y, &move_x, &move_y);
+			what_piece = select_piece(locboard, init_x, init_y);
+			while ((locboard[init_x][init_y] == 0) || (locboard[init_x][init_y] > 0x10))
 			{
-				if (locboard[init_x][init_y] == 0x09)
+				printf("Invalid Selection, Please Try Again!\n");
+				scanf("%d %d %d %d", &init_x, &init_y, &move_x, &move_y);
+			}
+			if ((locboard[init_x][init_y] > 0x08) && (locboard[init_x][init_y] < 0x11))			//white pawn
+			{
+				valid = move_check_pawn(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
 				{
-					WP1_X = move_x;
-					WP1_Y = move_y; 
-				}
-				if (locboard[init_x][init_y] == 0x0A)
-				{
-					WP2_X = move_x;
-					WP2_Y = move_y;
-				}
-				if (locboard[init_x][init_y] == 0x0B)
-				{
-					WP3_X = move_x;
-					WP3_Y = move_y;
-				}
-				if (locboard[init_x][init_y] == 0x0C)
-				{
-					WP4_X = move_x;
-					WP4_Y = move_y;
-				}
-				if (locboard[init_x][init_y] == 0x0D)
-				{
-					WP5_X = move_x;
-					WP5_Y = move_y;
-				}
-				if (locboard[init_x][init_y] == 0x0E)
-				{
-					WP6_X = move_x;
-					WP6_Y = move_y;
-				}
-				if (locboard[init_x][init_y] == 0x0F)
-				{
-					WP7_X = move_x;
-					WP7_Y = move_y;
-				}
-				if (locboard[init_x][init_y] == 0x10)
-				{
-					WP8_X = move_x;
-					WP8_Y = move_y;
-				}
-				locboard[move_x][move_y] = locboard[init_x][init_y];
-				locboard[init_x][init_y] = 0x00;
-				turn = 1;
-				for (i = 0; i < 8; i++)				//y initialization
-				{
-					for (j = 0; j < 8; j++)			//x initialization
+					if (locboard[init_x][init_y] == 0x09)
 					{
-						checkboard[j][i] = 0x00;
+						WP1_X = move_x;
+						WP1_Y = move_y;
 					}
-				}
-				checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
-				checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
-				checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
-				checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
-				checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
-				checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
-				checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_X, 7);
-				checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_X, 8);
-				checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
-				checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
-				checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
-				checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
-				checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
-				checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
-				checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
-				checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+					if (locboard[init_x][init_y] == 0x0A)
+					{
+						WP2_X = move_x;
+						WP2_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x0B)
+					{
+						WP3_X = move_x;
+						WP3_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x0C)
+					{
+						WP4_X = move_x;
+						WP4_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x0D)
+					{
+						WP5_X = move_x;
+						WP5_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x0E)
+					{
+						WP6_X = move_x;
+						WP6_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x0F)
+					{
+						WP7_X = move_x;
+						WP7_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x10)
+					{
+						WP8_X = move_x;
+						WP8_Y = move_y;
+					}
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_Y, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_Y, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
 
-				checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
-				checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
-				checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
-				checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
-				checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
-				checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
-				checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
-				checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
-				checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
-				checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
-				checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
-				checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
-				checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
-				checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
-				checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
-				checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
-				for (i = 0; i < 8; i++)
-				{
-					for (j = 0; j < 8; j++)
-					{
-						if (j == 7)
-							printf("%02x \n", locboard[j][i]);
-						else
-							printf("%02x ", locboard[j][i]);
-					}
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 1;
 				}
-				printf("\n");
-				for (i = 0; i < 8; i++)
+				if (valid == 0)
 				{
-					for (j = 0; j < 8; j++)
-					{
-						if (j == 7)
-							printf("%08x \n", checkboard[j][i]);
-						else
-							printf("%08x ", checkboard[j][i]);
-					}
+					printf("Invalid Destination, Try Again\n");
+					turn = 0;
 				}
+			}
+			if ((locboard[init_x][init_y] == 0x02) || (locboard[init_x][init_y] == 0x07))		//white knight
+			{
+				valid = move_check_knight(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
+				{
+					if (locboard[init_x][init_y] == 0x02)
+					{
+						WQK_X = move_x;
+						WQK_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x07)
+					{
+						WKK_X = move_x;
+						WKK_Y = move_y;
+					}
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_X, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_X, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
 
-				
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 1;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 0;
+				}
+			}
+			if ((locboard[init_x][init_y] == 0x01) || (locboard[init_x][init_y] == 0x08))		//white rook
+			{
+				valid = move_check_rook(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
+				{
+					if (locboard[init_x][init_y] == 0x01)
+					{
+						WQR_X = move_x;
+						WQR_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x08)
+					{
+						WKR_X = move_x;
+						WKR_Y = move_y;
+					}
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_Y, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_Y, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 1;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 0;
+				}
+			}
+			if ((locboard[init_x][init_y] == 0x03) || (locboard[init_x][init_y] == 0x06))		//white bishop
+			{
+				valid = move_check_bishop(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
+				{
+					if (locboard[init_x][init_y] == 0x03)
+					{
+						WQB_X = move_x;
+						WQB_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x06)
+					{
+						WKB_X = move_x;
+						WKB_Y = move_y;
+					}
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_Y, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_Y, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 1;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 0;
+				}
+			}
+			if (locboard[init_x][init_y] == 0x04)		//white queen
+			{
+				valid = move_check_rook(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
+				{
+					WQ_X = move_x;
+					WQ_Y = move_y;
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_Y, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_Y, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 1;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 0;
+				}
+			}
+			if (locboard[init_x][init_y] == 0x04)		//white king
+			{
+				valid = move_check_king(locboard, checkboard, move_x, move_y, WK_X, WK_Y);
+				if (valid == 1)
+				{
+					WK_X = move_x;
+					WK_Y = move_y;
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_Y, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_Y, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 1;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 0;
+				}
+			}
+			for (i = 0; i < 8; i++)
+			{
+				for (j = 0; j < 8; j++)
+				{
+					if (j == 7)
+						printf("%02x \n", locboard[j][i]);
+					else
+						printf("%02x ", locboard[j][i]);
+				}
 			}
 		}
-		if ((locboard[init_x][init_y] == 0x02) || (locboard[init_x][init_y] == 0x07))		//white knight
+//Black Turn
+		if (turn == 1)
 		{
-			valid = move_check_knight(checkboard, move_x, move_y, what_piece);
-			if (valid == 1)
+			printf("Black Turn: Select Piece and Destination\n");
+			scanf("%d %d %d %d", &init_x, &init_y, &move_x, &move_y);
+			what_piece = select_piece(locboard, init_x, init_y);
+			while ((locboard[init_x][init_y] == 0) || (locboard[init_x][init_y] < 0x11))
 			{
-				locboard[move_x][move_y] = locboard[init_x][init_y];
-				locboard[init_x][init_y] = 0x00;
-				turn = 1;
+				printf("Invalid Selection, Please Try Again!\n");
+				scanf("%d %d %d %d", &init_x, &init_y, &move_x, &move_y);
 			}
-		}
-		if ((locboard[init_x][init_y] == 0x02) || (locboard[init_x][init_y] == 0x07))		//white rook
-		{
-			valid = move_check_knight(checkboard, move_x, move_y, what_piece);
-			if (valid == 1)
+			if ((locboard[init_x][init_y] > 0x18) && (locboard[init_x][init_y] < 0x21))			//black pawn
 			{
-				locboard[move_x][move_y] = locboard[init_x][init_y];
-				locboard[init_x][init_y] = 0x00;
-				turn = 1;
+				valid = move_check_pawn(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
+				{
+					if (locboard[init_x][init_y] == 0x19)
+					{
+						BP1_X = move_x;
+						BP1_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x1A)
+					{
+						BP2_X = move_x;
+						BP2_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x1B)
+					{
+						BP3_X = move_x;
+						BP3_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x1C)
+					{
+						BP4_X = move_x;
+						BP4_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x1D)
+					{
+						BP5_X = move_x;
+						BP5_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x1E)
+					{
+						BP6_X = move_x;
+						BP6_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x1F)
+					{
+						BP7_X = move_x;
+						BP7_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x20)
+					{
+						BP8_X = move_x;
+						BP8_Y = move_y;
+					}
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					turn = 1;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_Y, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_Y, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 0;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 1;
+				}
+			}
+			if ((locboard[init_x][init_y] == 0x12) || (locboard[init_x][init_y] == 0x17))		//black knight
+			{
+				valid = move_check_knight(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
+				{
+					if (locboard[init_x][init_y] == 0x12)
+					{
+						BQK_X = move_x;
+						BQK_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x17)
+					{
+						BKK_X = move_x;
+						BKK_Y = move_y;
+					}
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					turn = 1;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_Y, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_Y, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 0;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 1;
+				}
+			}
+			if ((locboard[init_x][init_y] == 0x11) || (locboard[init_x][init_y] == 0x18))		//black rook
+			{
+				valid = move_check_rook(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
+				{
+					if (locboard[init_x][init_y] == 0x02)
+					{
+						BQR_X = move_x;
+						BQR_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x07)
+					{
+						BKR_X = move_x;
+						BKR_Y = move_y;
+					}
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_X, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_X, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 0;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 1;
+				}
+			}
+			if ((locboard[init_x][init_y] == 0x13) || (locboard[init_x][init_y] == 0x16))		//black bishop
+			{
+				valid = move_check_bishop(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
+				{
+					if (locboard[init_x][init_y] == 0x02)
+					{
+						BQB_X = move_x;
+						BQB_Y = move_y;
+					}
+					if (locboard[init_x][init_y] == 0x07)
+					{
+						BKB_X = move_x;
+						BKB_Y = move_y;
+					}
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_X, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_X, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 0;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 1;
+				}
+			}
+			if (locboard[init_x][init_y] == 0x14)		//black queen
+			{
+				valid = move_check_queen(checkboard, move_x, move_y, what_piece);
+				if (valid == 1)
+				{
+					BQ_X = move_x;
+					BQ_Y = move_y;
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_X, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_X, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 0;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 1;
+				}
+			}
+			if (locboard[init_x][init_y] == 0x15)		//black king
+			{
+				valid = move_check_king(locboard, checkboard, move_x, move_y, BK_X, BK_Y);
+				if (valid == 1)
+				{
+					BK_X = move_x;
+					BK_Y = move_y;
+					locboard[move_x][move_y] = locboard[init_x][init_y];
+					locboard[init_x][init_y] = 0x00;
+					for (i = 0; i < 8; i++)				//y refresh
+					{
+						for (j = 0; j < 8; j++)			//x refresh
+						{
+							checkboard[j][i] = 0x00;
+						}
+					}
+					checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
+					checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
+					checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
+					checkboard_gen_pawn(locboard, checkboard, WP4_X, WP4_Y, 4);
+					checkboard_gen_pawn(locboard, checkboard, WP5_X, WP5_Y, 5);
+					checkboard_gen_pawn(locboard, checkboard, WP6_X, WP6_Y, 6);
+					checkboard_gen_pawn(locboard, checkboard, WP7_X, WP7_X, 7);
+					checkboard_gen_pawn(locboard, checkboard, WP8_X, WP8_X, 8);
+					checkboard_gen_knight(locboard, checkboard, WQK_X, WQK_Y, 1);
+					checkboard_gen_knight(locboard, checkboard, WKK_X, WKK_Y, 2);
+					checkboard_gen_rook(locboard, checkboard, WQR_X, WQR_Y, 1);
+					checkboard_gen_rook(locboard, checkboard, WKR_X, WKR_Y, 2);
+					checkboard_gen_bishop(locboard, checkboard, WQB_X, WQB_Y, 1);
+					checkboard_gen_bishop(locboard, checkboard, WKB_X, WKB_Y, 2);
+					checkboard_gen_king(locboard, checkboard, WK_X, WK_Y);
+					checkboard_gen_queen(locboard, checkboard, WQ_X, WQ_Y, 5);
+
+					checkboard_gen_pawn(locboard, checkboard, BP1_X, BP1_Y, 9);
+					checkboard_gen_pawn(locboard, checkboard, BP2_X, BP2_Y, 10);
+					checkboard_gen_pawn(locboard, checkboard, BP3_X, BP3_Y, 11);
+					checkboard_gen_pawn(locboard, checkboard, BP4_X, BP4_Y, 12);
+					checkboard_gen_pawn(locboard, checkboard, BP5_X, BP5_Y, 13);
+					checkboard_gen_pawn(locboard, checkboard, BP6_X, BP6_Y, 14);
+					checkboard_gen_pawn(locboard, checkboard, BP7_X, BP7_Y, 15);
+					checkboard_gen_pawn(locboard, checkboard, BP8_X, BP8_Y, 16);
+					checkboard_gen_knight(locboard, checkboard, BQK_X, BQK_Y, 3);
+					checkboard_gen_knight(locboard, checkboard, BKK_X, BKK_Y, 4);
+					checkboard_gen_rook(locboard, checkboard, BQR_X, BQR_Y, 3);
+					checkboard_gen_rook(locboard, checkboard, BKR_X, BKR_Y, 4);
+					checkboard_gen_bishop(locboard, checkboard, BQB_X, BQB_Y, 3);
+					checkboard_gen_bishop(locboard, checkboard, BKB_X, BKB_Y, 4);
+					checkboard_gen_king(locboard, checkboard, BK_X, BK_Y);
+					checkboard_gen_queen(locboard, checkboard, BQ_X, BQ_Y, 6);
+					turn = 0;
+				}
+				if (valid == 0)
+				{
+					printf("Invalid Destination, Try Again\n");
+					turn = 1;
+				}
+			}
+			for (i = 0; i < 8; i++)
+			{
+				for (j = 0; j < 8; j++)
+				{
+					if (j == 7)
+						printf("%02x \n", locboard[j][i]);
+					else
+						printf("%02x ", locboard[j][i]);
+				}
 			}
 		}
 	}
