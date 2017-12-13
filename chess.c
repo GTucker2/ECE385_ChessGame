@@ -28,7 +28,7 @@ void checkboard_gen_knight(unsigned int locboard[8][8], unsigned int checkboard_
 	//	locboard[3][2] = 5;
 	if (locboard[knight_pos_x][knight_pos_y] <= 0x10)									//case for white piece
 	{
-		knight_track_y = knight_pos_y - 2;												//first L 
+		knight_track_y = knight_pos_y - 2;												//first L
 		knight_track_x = knight_pos_x - 1;
 		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] > 0x10) || (locboard[knight_track_x][knight_track_y] == 0))) 					//checks whether position is on board
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
@@ -57,6 +57,8 @@ void checkboard_gen_knight(unsigned int locboard[8][8], unsigned int checkboard_
 	}
 	else if (locboard[knight_pos_x][knight_pos_y] > 0x10)								//case for black piece
 	{
+		knight_track_y = knight_pos_y - 2;												//first L
+		knight_track_x = knight_pos_x - 1;
 		if ((knight_track_y >= 0) && (knight_track_y < 8) && (knight_track_x >= 0) && (knight_track_x < 8) && ((locboard[knight_track_x][knight_track_y] <= 0x10) || (locboard[knight_track_x][knight_track_y] == 0))) 					//checks whether position is on board
 			checkboard_knight[knight_track_x][knight_track_y] = checkboard_knight[knight_track_x][knight_track_y] | knight_type;
 		knight_track_x = knight_pos_x + 1;
@@ -119,7 +121,7 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 		pawn_type = 0x2000;
 	if (what_pawn == 7)				//White Pawn 7
 		pawn_type = 0x4000;
-	if (what_pawn == 8)				//White Pawn 8 
+	if (what_pawn == 8)				//White Pawn 8
 		pawn_type = 0x8000;
 	if (what_pawn == 9)				//Black Pawn 1
 		pawn_type = 0x1000000;
@@ -142,7 +144,7 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 		if (jumptracker == 0)		//initial jump has not occured yet
 		{
 			pawn_track_y = pawn_pos_y - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x10))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
@@ -157,7 +159,7 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 		else if (jumptracker == 1)
 		{
 			pawn_track_y = pawn_pos_y - 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] > 0x10))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
@@ -172,7 +174,7 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 		if (jumptracker == 0)		//initial jump has not occured yet
 		{
 			pawn_track_y = pawn_pos_y + 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x10) && (locboard[pawn_track_x][pawn_track_y] != 0))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
@@ -187,7 +189,7 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 		else if (jumptracker == 1)
 		{
 			pawn_track_y = pawn_pos_y + 1;
-			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space 
+			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (locboard[pawn_pos_x][pawn_track_y] == 0))													//includes check for empty space
 				checkboard_pawn[pawn_pos_x][pawn_track_y] = checkboard_pawn[pawn_pos_x][pawn_track_y] | pawn_type;
 			pawn_track_x = pawn_pos_x + 1;
 			if ((pawn_track_y >= 0) && (pawn_track_y < 8) && (pawn_track_x >= 0) && (pawn_track_x < 8) && (locboard[pawn_track_x][pawn_track_y] <= 0x10) && (locboard[pawn_track_x][pawn_track_y] != 0))	//includes check for on board and whether space is occupied by an enemy piece (double check value)
@@ -198,6 +200,7 @@ void checkboard_gen_pawn(unsigned int locboard[8][8], unsigned int checkboard_pa
 		}
 	}
 }
+
 
 void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_rook[8][8], int rook_pos_x, int rook_pos_y, int what_rook)
 {
@@ -272,13 +275,13 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		}
 		brk = 0;
 	}
-	else if (locboard[rook_pos_x][rook_pos_y] > 0x10)		//black case
+	if (locboard[rook_pos_x][rook_pos_y] > 0x10)		//black case
 	{
 		for (i = rook_pos_x + 1; i < 8; i++)
 		{
-			if ((locboard[i][rook_pos_y] > 0x10) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
+			if (locboard[i][rook_pos_y] > 0x10)			//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[i][rook_pos_y] <= 0x10) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
+			if ((locboard[i][rook_pos_y] <= 0x10) && (locboard[i][rook_pos_y] != 0x00) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
 			{
 				checkboard_rook[i][rook_pos_y] = checkboard_rook[i][rook_pos_y] | rook_type;
 				brk = 1;
@@ -289,9 +292,9 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 		for (i = rook_pos_x - 1; i >= 0; i--)
 		{
-			if ((locboard[i][rook_pos_y] > 0x10) && (locboard[i][rook_pos_y] != 0))			//if encountering a friendly piece exit loop
+			if (locboard[i][rook_pos_y] > 0x10)			//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[i][rook_pos_y] <= 0x10) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
+			if ((locboard[i][rook_pos_y] <= 0x10) && (locboard[i][rook_pos_y] != 0x00) && (brk != 1))												//if encountering an enemy piece, write to space and exit loop
 			{
 				checkboard_rook[i][rook_pos_y] = checkboard_rook[i][rook_pos_y] | rook_type;
 				brk = 1;
@@ -302,9 +305,9 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 		for (i = rook_pos_y + 1; i < 8; i++)
 		{
-			if ((locboard[rook_pos_x][i] > 0x10) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
+			if (locboard[rook_pos_x][i] > 0x10)				//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[rook_pos_x][i] <= 0x10) && (brk != 1))
+			if ((locboard[rook_pos_x][i] <= 0x10) && (locboard[rook_pos_x][i] != 0x00) && (brk != 1))
 			{
 				checkboard_rook[rook_pos_x][i] = checkboard_rook[rook_pos_x][i] | rook_type;
 				brk = 1;
@@ -315,9 +318,9 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 		for (i = rook_pos_y - 1; i >= 0; i--)
 		{
-			if ((locboard[rook_pos_x][i] > 0x10) && (locboard[rook_pos_x][i] != 0))				//if encountering a friendly piece exit loop
+			if (locboard[rook_pos_x][i] > 0x10)				//if encountering a friendly piece exit loop
 				brk = 1;
-			if ((locboard[rook_pos_x][i] <= 0x10) && (brk != 1))
+			if ((locboard[rook_pos_x][i] <= 0x10) && (locboard[rook_pos_x][i] != 0x00) && (brk != 1))
 			{
 				checkboard_rook[rook_pos_x][i] = checkboard_rook[rook_pos_x][i] | rook_type;
 				brk = 1;
@@ -328,6 +331,7 @@ void checkboard_gen_rook(unsigned int locboard[8][8], unsigned int checkboard_ro
 		brk = 0;
 	}
 }
+
 
 void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_bishop[8][8], int bishop_pos_x, int bishop_pos_y, int what_bishop)
 {
@@ -407,9 +411,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 	{
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x + i][bishop_pos_y + i] > 0x10) && (locboard[bishop_pos_x + i][bishop_pos_y + i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y + i > 7))	//up and to right diagonal
+			if ((locboard[bishop_pos_x + i][bishop_pos_y + i] > 0x10) || (bishop_pos_x + i > 7) || (bishop_pos_y + i > 7))	//up and to right diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x + i][bishop_pos_y + i] <= 0x10) && (brk != 1))
+			if ((locboard[bishop_pos_x + i][bishop_pos_y + i] <= 0x10) && (locboard[bishop_pos_x + i][bishop_pos_y + i] != 0x00) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x + i][bishop_pos_y + i] = checkboard_bishop[bishop_pos_x + i][bishop_pos_y + i] | bishop_type;
 				brk = 1;
@@ -420,9 +424,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x - i][bishop_pos_y - i] > 0x10) && (locboard[bishop_pos_x - i][bishop_pos_y - i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y - i < 0))	//down and left diagonal
+			if ((locboard[bishop_pos_x - i][bishop_pos_y - i] > 0x10) || (bishop_pos_x - i < 0) || (bishop_pos_y - i < 0))	//down and left diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x - i][bishop_pos_y - i] <= 0x10) && (brk != 1))
+			if ((locboard[bishop_pos_x - i][bishop_pos_y - i] <= 0x10) && (locboard[bishop_pos_x - i][bishop_pos_y - i] != 0x00) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x - i][bishop_pos_y - i] = checkboard_bishop[bishop_pos_x - i][bishop_pos_y - i] | bishop_type;
 				brk = 1;
@@ -433,9 +437,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x - i][bishop_pos_y + i] > 0x10) && (locboard[bishop_pos_x - i][bishop_pos_y + i] != 0)) || (bishop_pos_x - i < 0) || (bishop_pos_y + i > 7))		//up and left diagonal
+			if ((locboard[bishop_pos_x - i][bishop_pos_y + i] > 0x10) || (bishop_pos_x - i < 0) || (bishop_pos_y + i > 7))		//up and left diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x - i][bishop_pos_y + i] <= 0x10) && (brk != 1))
+			if ((locboard[bishop_pos_x - i][bishop_pos_y + i] <= 0x10) && (locboard[bishop_pos_x - i][bishop_pos_y + i] != 0x00) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x - i][bishop_pos_y + i] = checkboard_bishop[bishop_pos_x - i][bishop_pos_y + i] | bishop_type;
 				brk = 1;
@@ -446,9 +450,9 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 		for (i = 1; i < 7; i++)
 		{
-			if (((locboard[bishop_pos_x + i][bishop_pos_y - i] > 0x10) && (locboard[bishop_pos_x + i][bishop_pos_y - i] != 0)) || (bishop_pos_x + i > 7) || (bishop_pos_y - i < 0))		//down and right diagonal
+			if ((locboard[bishop_pos_x + i][bishop_pos_y - i] > 0x10) || (bishop_pos_x + i > 7) || (bishop_pos_y - i < 0))		//down and right diagonal
 				brk = 1;
-			if ((locboard[bishop_pos_x + i][bishop_pos_y - i] <= 0x10) && (brk != 1))
+			if ((locboard[bishop_pos_x + i][bishop_pos_y - i] <= 0x10) && (locboard[bishop_pos_x + i][bishop_pos_y - i] != 0x00) && (brk != 1))
 			{
 				checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] = checkboard_bishop[bishop_pos_x + i][bishop_pos_y - i] | bishop_type;
 				brk = 1;
@@ -459,6 +463,7 @@ void checkboard_gen_bishop(unsigned int locboard[8][8], unsigned int checkboard_
 		brk = 0;
 	}
 }
+
 void checkboard_gen_queen(unsigned int locboard[8][8], unsigned int checkboard[8][8], int queen_pos_x, int queen_pos_y, int what_queen)
 {
 	checkboard_gen_rook(locboard, checkboard, queen_pos_x, queen_pos_y, what_queen);
@@ -531,7 +536,7 @@ int move_check_pawn(unsigned int checkboard[8][8], int x_pos, int y_pos, int wha
 		pawn_type = 0x2000;
 	if (what_pawn == 7)				//White Pawn 7
 		pawn_type = 0x4000;
-	if (what_pawn == 8)				//White Pawn 8 
+	if (what_pawn == 8)				//White Pawn 8
 		pawn_type = 0x8000;
 	if (what_pawn == 9)				//Black Pawn 1
 		pawn_type = 0x1000000;
@@ -713,10 +718,121 @@ int select_piece(unsigned int locboard[8][8], int x_pos, int y_pos)
 
 }
 
+void translate_board(unsigned int locboard[8][8], char realboard[8][8])
+{
+	int i, j;
+	for (i = 0; i < 8; i++)				
+	{
+		for (j = 0; j < 8; j++)			
+		{
+			if (locboard[j][i] == 0x00)
+				realboard[j][i] = 0;
+			if ((locboard[j][i] == 0x01) || (locboard[j][i] == 0x08))
+				realboard[j][i] = "WR";
+			if ((locboard[j][i] == 0x02) || (locboard[j][i] == 0x07))
+				realboard[j][i] = "WK";
+			if ((locboard[j][i] == 0x03) || (locboard[j][i] == 0x06))
+				realboard[j][i] = "WB";
+			if (locboard[j][i] == 0x04)
+				realboard[j][i] = "WQ";
+			if (locboard[j][i] == 0x05)
+				realboard[j][i] = "KW";
+			if ((locboard[j][i] >= 0x09) && (locboard[j][i] <= 0x10))
+				realboard[j][i] = "WP"; 
+
+			if ((locboard[j][i] == 0x11) || (locboard[j][i] == 0x18))
+				realboard[j][i] = "BR";
+			if ((locboard[j][i] == 0x12) || (locboard[j][i] == 0x17))
+				realboard[j][i] = "BK";
+			if ((locboard[j][i] == 0x13) || (locboard[j][i] == 0x16))
+				realboard[j][i] = "BB";
+			if (locboard[j][i] == 0x14)
+				realboard[j][i] = "BQ";
+			if (locboard[j][i] == 0x15)
+				realboard[j][i] = "KB";
+			if ((locboard[j][i] >= 0x19) && (locboard[j][i] <= 0x20))
+				realboard[j][i] = "BP";
+		}
+	}
+}
+
+void print_board(unsigned int locboard[8][8])
+{
+	int i, j;
+	for (i = 0; i < 8; i++)
+	{
+		for (j = 0; j < 8; j++)
+		{
+			if (j == 7)
+			{
+				if (locboard[j][i] == 0x00)
+					printf(" 00 \n");
+				if ((locboard[j][i] == 0x01) || (locboard[j][i] == 0x08))
+					printf(" WR \n");
+				if ((locboard[j][i] == 0x02) || (locboard[j][i] == 0x07))
+					printf(" WK \n");
+				if ((locboard[j][i] == 0x03) || (locboard[j][i] == 0x06))
+					printf(" WB \n");
+				if (locboard[j][i] == 0x04)
+					printf(" WQ \n");
+				if (locboard[j][i] == 0x05)
+					printf(" KW \n");
+				if ((locboard[j][i] >= 0x09) && (locboard[j][i] <= 0x10))
+					printf(" WP \n");
+
+				if ((locboard[j][i] == 0x11) || (locboard[j][i] == 0x18))
+					printf(" BR \n");
+				if ((locboard[j][i] == 0x12) || (locboard[j][i] == 0x17))
+					printf(" BK \n");
+				if ((locboard[j][i] == 0x13) || (locboard[j][i] == 0x16))
+					printf(" BB \n");
+				if (locboard[j][i] == 0x14)
+					printf(" BQ \n");
+				if (locboard[j][i] == 0x15)
+					printf(" KB \n");
+				if ((locboard[j][i] >= 0x19) && (locboard[j][i] <= 0x20))
+					printf(" BP \n");
+			}
+			else
+			{
+				if (locboard[j][i] == 0x00)
+					printf(" 00 ");
+				if ((locboard[j][i] == 0x01) || (locboard[j][i] == 0x08))
+					printf(" WR ");
+				if ((locboard[j][i] == 0x02) || (locboard[j][i] == 0x07))
+					printf(" WK ");
+				if ((locboard[j][i] == 0x03) || (locboard[j][i] == 0x06))
+					printf(" WB ");
+				if (locboard[j][i] == 0x04)
+					printf(" WQ ");
+				if (locboard[j][i] == 0x05)
+					printf(" KW ");
+				if ((locboard[j][i] >= 0x09) && (locboard[j][i] <= 0x10))
+					printf(" WP ");
+
+				if ((locboard[j][i] == 0x11) || (locboard[j][i] == 0x18))
+					printf(" BR ");
+				if ((locboard[j][i] == 0x12) || (locboard[j][i] == 0x17))
+					printf(" BK ");
+				if ((locboard[j][i] == 0x13) || (locboard[j][i] == 0x16))
+					printf(" BB ");
+				if (locboard[j][i] == 0x14)
+					printf(" BQ ");
+				if (locboard[j][i] == 0x15)
+					printf(" KB ");
+				if ((locboard[j][i] >= 0x19) && (locboard[j][i] <= 0x20))
+					printf(" BP ");
+			}
+				
+		}
+	}
+}
+
 int main()
 {
 	unsigned int locboard[8][8];		//actual game board
 	unsigned int checkboard[8][8];		//parallel generated board with hot encoded valid moves
+	char realboard[8][8];		//for in console game purposes
 	int init_x, init_y, checkmate, check, turn;
 	int move_x, move_y, what_piece, valid;
 	int WQR_X, WQR_Y, WQK_X, WQK_Y, WQB_X, WQB_Y, WQ_X, WQ_Y, WK_X, WK_Y, WKB_X, WKB_Y, WKK_X, WKK_Y, WKR_X, WKR_Y, WP1_X, WP1_Y, WP2_X, WP2_Y;
@@ -742,11 +858,11 @@ int main()
 	WP1_X = 0;
 	WP1_Y = 6;
 	WP2_X = 1;
-	WP2_Y = 6; 
+	WP2_Y = 6;
 	WP3_X = 2;
 	WP3_Y = 6;
 	WP4_X = 3;
-	WP4_Y = 6; 
+	WP4_Y = 6;
 	WP5_X = 4;
 	WP5_Y = 6;
 	WP6_X = 5;
@@ -754,7 +870,7 @@ int main()
 	WP7_X = 6;
 	WP7_Y = 6;
 	WP8_X = 7;
-	WP8_Y = 6; 
+	WP8_Y = 6;
 	BQR_X = 0;
 	BQR_Y = 0;
 	BQK_X = 1;
@@ -767,10 +883,10 @@ int main()
 	BK_Y = 0;
 	BKB_X = 5;
 	BKB_Y = 0;
-	BKK_X = 6; 
+	BKK_X = 6;
 	BKK_Y = 0;
 	BKR_X = 7;
-	BKR_Y = 0; 
+	BKR_Y = 0;
 	BP1_X = 0;
 	BP1_Y = 1;
 	BP2_X = 1;
@@ -781,10 +897,10 @@ int main()
 	BP4_Y = 1;
 	BP5_X = 4;
 	BP5_Y = 1;
-	BP6_X = 5; 
+	BP6_X = 5;
 	BP6_Y = 1;
-	BP7_X = 6; 
-	BP7_Y = 1; 
+	BP7_X = 6;
+	BP7_Y = 1;
 	BP8_X = 7;
 	BP8_Y = 1;
 	int i, j;
@@ -798,7 +914,7 @@ int main()
 			checkboard[j][i] = 0x00;
 		}
 	}
-	locboard[0][0] = 0x11;			//locboard initialization 
+	locboard[0][0] = 0x11;			//locboard initialization
 	locboard[1][0] = 0x12;
 	locboard[2][0] = 0x13;
 	locboard[3][0] = 0x14;
@@ -831,7 +947,8 @@ int main()
 	locboard[6][7] = 0x07;
 	locboard[7][7] = 0x08;
 
-	for (i = 0; i < 8; i++)
+	print_board(locboard);
+/*	for (i = 0; i < 8; i++)
 	{
 		for (j = 0; j < 8; j++)
 		{
@@ -841,6 +958,7 @@ int main()
 				printf("%02x ", locboard[j][i]);
 		}
 	}
+*/
 	checkboard_gen_pawn(locboard, checkboard, WP1_X, WP1_Y, 1);
 	checkboard_gen_pawn(locboard, checkboard, WP2_X, WP2_Y, 2);
 	checkboard_gen_pawn(locboard, checkboard, WP3_X, WP3_Y, 3);
@@ -878,6 +996,10 @@ int main()
 	{
 		if (turn == 0)
 		{
+			init_x = 0;
+			init_y = 0;
+			move_x = 0;
+			move_y = 0;
 			printf("White Turn: Select Piece and Destination\n");
 			scanf("%d %d %d %d", &init_x, &init_y, &move_x, &move_y);
 			what_piece = select_piece(locboard, init_x, init_y);
@@ -1290,20 +1412,15 @@ int main()
 					turn = 0;
 				}
 			}
-			for (i = 0; i < 8; i++)
-			{
-				for (j = 0; j < 8; j++)
-				{
-					if (j == 7)
-						printf("%02x \n", locboard[j][i]);
-					else
-						printf("%02x ", locboard[j][i]);
-				}
-			}
+			print_board(locboard);
 		}
-//Black Turn
+		//Black Turn
 		if (turn == 1)
 		{
+			init_x = 0;
+			init_y = 0;
+			move_x = 0;
+			move_y = 0;
 			printf("Black Turn: Select Piece and Destination\n");
 			scanf("%d %d %d %d", &init_x, &init_y, &move_x, &move_y);
 			what_piece = select_piece(locboard, init_x, init_y);
@@ -1479,12 +1596,12 @@ int main()
 				valid = move_check_rook(checkboard, move_x, move_y, what_piece);
 				if (valid == 1)
 				{
-					if (locboard[init_x][init_y] == 0x02)
+					if (locboard[init_x][init_y] == 0x11)
 					{
 						BQR_X = move_x;
 						BQR_Y = move_y;
 					}
-					if (locboard[init_x][init_y] == 0x07)
+					if (locboard[init_x][init_y] == 0x18)
 					{
 						BKR_X = move_x;
 						BKR_Y = move_y;
@@ -1544,12 +1661,12 @@ int main()
 				valid = move_check_bishop(checkboard, move_x, move_y, what_piece);
 				if (valid == 1)
 				{
-					if (locboard[init_x][init_y] == 0x02)
+					if (locboard[init_x][init_y] == 0x13)
 					{
 						BQB_X = move_x;
 						BQB_Y = move_y;
 					}
-					if (locboard[init_x][init_y] == 0x07)
+					if (locboard[init_x][init_y] == 0x16)
 					{
 						BKB_X = move_x;
 						BKB_Y = move_y;
@@ -1718,16 +1835,7 @@ int main()
 					turn = 1;
 				}
 			}
-			for (i = 0; i < 8; i++)
-			{
-				for (j = 0; j < 8; j++)
-				{
-					if (j == 7)
-						printf("%02x \n", locboard[j][i]);
-					else
-						printf("%02x ", locboard[j][i]);
-				}
-			}
+			print_board(locboard);
 		}
 	}
 	return 0;
